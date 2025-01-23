@@ -3,7 +3,7 @@ import { PPOB_MENU, PROMO_BANNER } from "@/lib/constant";
 
 type Props = {};
 
-const HomePage = (props: Props) => {
+const HomePage = ({}: Props) => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-[40%_1fr] gap-4 items-center">
