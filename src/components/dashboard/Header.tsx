@@ -10,7 +10,7 @@ export const DashboardHeader = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white dark:border-gray-800 dark:bg-gray-950">
       <div className="container flex h-16 items-center justify-between">
-        <NavLink to="#" className="flex items-center gap-2">
+        <NavLink to="/" className="flex items-center gap-2">
           <img src={Logo} className="h-[20px]" alt="PPOB Logo" />
           <span className="font-semibold">
             PPOB <span className="hidden md:inline">ARDIAN </span>

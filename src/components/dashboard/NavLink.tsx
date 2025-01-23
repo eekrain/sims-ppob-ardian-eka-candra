@@ -1,12 +1,11 @@
 import { cn } from "@/lib/utils";
-import React from "react";
+import { PropsWithChildren } from "react";
 import { NavLink } from "react-router";
 
 type Props = {
   className?: string;
   href: string;
-  children: React.ReactNode;
-};
+} & PropsWithChildren;
 
 export const MyNavLink = ({ href, children, className }: Props) => {
   return (

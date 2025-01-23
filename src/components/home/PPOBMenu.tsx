@@ -3,12 +3,12 @@ import { TMenu } from "@/lib/constant";
 type InnerProps = {} & TMenu;
 const MenuItem = ({ title, img }: InnerProps) => {
   return (
-    <div key={title} className="flex flex-col items-center">
+    <button className="flex flex-col items-center">
       <img src={img} alt={`Logo ${title}`} className="size-[70px]" />
       <p className="text-wrap text-sm text-muted-foreground text-center">
         {title}
       </p>
-    </div>
+    </button>
   );
 };
 
