@@ -13,7 +13,7 @@ export const DashboardHeader = () => {
         <NavLink to="/" className="flex items-center gap-2">
           <img src={Logo} className="h-[20px]" alt="PPOB Logo" />
           <span className="font-semibold">
-            PPOB <span className="hidden md:inline">ARDIAN </span>
+            SIMS PPOB <span className="hidden md:inline">ARDIAN </span>
             <span>EKA</span>
             <span className="hidden md:inline"> CANDRA</span>
           </span>
