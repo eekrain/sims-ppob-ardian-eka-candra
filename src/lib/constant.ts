@@ -1,3 +1,6 @@
+export const BASE_API_URL =
+  "https://take-home-test-api.nutech-integrasi.com" as const;
+
 export const NAV_LINKS = [
   { title: "Top Up", href: "/topup" },
   { title: "Transaction", href: "/transaction" },

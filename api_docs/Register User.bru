@@ -1,0 +1,20 @@
+meta {
+  name: Register User
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BASE_URL}}/registration
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "candra.ardianeka@gmail.com",
+    "first_name": "Ardian",
+    "last_name": "Eka Candra",
+    "password": "123123123"
+  }
+}
