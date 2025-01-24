@@ -2,7 +2,7 @@ import profilePicture from "@/assets/Profile Photo.png";
 
 type Props = {};
 
-export const Welcome = (props: Props) => {
+export const Welcome = ({}: Props) => {
   return (
     <div>
       <img

@@ -14,6 +14,9 @@ import RegistrationPage from "./pages/auth/registration";
 import Redirect from "./components/Redirect";
 import TransactionPage from "./pages/transaction";
 import AccountPage from "./pages/account";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import { Toaster } from "sonner";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +61,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <Toaster />
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 );

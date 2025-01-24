@@ -1,0 +1,15 @@
+meta {
+  name: Update Profile Pic
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{BASE_URL}}/profile/image
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  file: @file(/home/eekrain/Downloads/Meta.png)
+}

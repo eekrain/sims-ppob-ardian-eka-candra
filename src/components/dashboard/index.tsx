@@ -1,13 +1,38 @@
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { DashboardHeader } from "./Header";
-import { Toaster } from "sonner";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { useEffect, useRef } from "react";
+import { getProfile, logout } from "@/store/auth";
 
 type Props = {};
 
 export const DashboardLayout = ({}: Props) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const loading = useAppSelector((state) => state.auth.loading);
+  const hasFetched = useRef(false);
+  useEffect(() => {
+    if (!hasFetched.current && !loading) {
+      dispatch(getProfile());
+      hasFetched.current = true;
+    }
+  }, [dispatch, loading]);
+
+  const user = useAppSelector((state) => state.auth.user);
+  const profileFetched = useAppSelector((state) => state.auth.profileFetched);
+
+  useEffect(() => {
+    if (profileFetched && !user) {
+      dispatch(logout());
+      navigate("/auth");
+    }
+  }, [dispatch, profileFetched, user]);
+
+  if (!user) return null;
+
   return (
     <>
-      <Toaster />
       <DashboardHeader />
       <div className="container mt-12 pb-20">
         <Outlet />

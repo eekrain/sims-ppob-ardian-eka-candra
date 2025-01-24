@@ -5,15 +5,15 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 const DIGIT = [...Array(7)];
 
 const HiddenDigit = () => (
-  <div className="inline-flex gap-2">
+  <span className="inline-flex gap-2">
     {DIGIT.map((_, i) => (
-      <div key={i} className="size-3 rounded-full bg-white" />
+      <span key={i} className="size-3 rounded-full bg-white" />
     ))}
-  </div>
+  </span>
 );
 type Props = {};
 
-export const SaldoCard = (props: Props) => {
+export const SaldoCard = ({}: Props) => {
   const [show, setShow] = useState(false);
   return (
     <div className="relative overflow-hidden rounded-2xl p-6">

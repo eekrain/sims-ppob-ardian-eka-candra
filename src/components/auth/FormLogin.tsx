@@ -12,15 +12,18 @@ import {
   FormItem,
   FormMessage,
 } from "../ui/form";
+import { useAppDispatch } from "@/store";
+import { login } from "@/store/auth";
 
-type Props = {
-  onSubmit: (values: TLoginSchema) => void;
-};
+type Props = {};
 
-const FormLogin = ({ onSubmit }: Props) => {
+const FormLogin = ({}: Props) => {
   const form = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
   });
+
+  const dispatch = useAppDispatch();
+  const onSubmit = (values: TLoginSchema) => dispatch(login(values));
 
   return (
     <Form {...form}>
@@ -65,7 +68,7 @@ const FormLogin = ({ onSubmit }: Props) => {
         />
 
         <Button variant={"destructive"} className="mt-6">
-          Registrasi
+          Masuk
         </Button>
 
         <p className="text-center text-sm">

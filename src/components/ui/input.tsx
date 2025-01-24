@@ -7,13 +7,13 @@ type Props = React.ComponentProps<"input"> & {
 };
 
 const Input = React.forwardRef<HTMLInputElement, Props>(
-  ({ className, type, icon, value, ...props }, ref) => {
+  ({ className, type, icon, ...props }, ref) => {
     return (
       <div className="relative">
         <span
           className={cn(
             "absolute left-0 top-0 -z-10 inline-flex h-full items-center gap-2 pl-3",
-            !value && "text-muted-foreground",
+            !props.value && "text-muted-foreground",
           )}
         >
           {icon}
@@ -25,7 +25,6 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
             className,
           )}
           ref={ref}
-          value={value}
           {...props}
         />
       </div>
