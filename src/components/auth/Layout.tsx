@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from "react-router";
 
 type Props = {};
 
-const AuthLayout = ({}: Props) => {
+export const AuthLayout = ({}: Props) => {
   const navigate = useNavigate();
   const token = useAppSelector((state) => state.auth.accessToken);
   useEffect(() => {
@@ -23,5 +23,3 @@ const AuthLayout = ({}: Props) => {
     </div>
   );
 };
-
-export default AuthLayout;

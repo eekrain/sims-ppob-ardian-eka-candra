@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./auth";
 import { useDispatch, useSelector } from "react-redux";
+import authReducer from "./auth";
+import informationReducer from "./information";
+import transactionReducer from "./transaction";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    information: informationReducer,
+    transaction: transactionReducer,
   },
-  devTools: true,
+  devTools: import.meta.env.DEV ? true : false,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

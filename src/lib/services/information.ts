@@ -27,7 +27,7 @@ const getAllServices = async () =>
     .method("GET")
     .bearer(localStorage.getItem("accessToken")!)
     .errorMessage("Gagal fetching list service")
-    .execute<TFetchResult<TBanner[]>>();
+    .execute<TFetchResult<TService[]>>();
 
 const InformationService = { getAllBanner, getAllServices };
 export default InformationService;

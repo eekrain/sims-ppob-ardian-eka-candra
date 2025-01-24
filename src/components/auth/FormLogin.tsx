@@ -17,7 +17,7 @@ import { login } from "@/store/auth";
 
 type Props = {};
 
-const FormLogin = ({}: Props) => {
+export const FormLogin = ({}: Props) => {
   const form = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
   });
@@ -81,5 +81,3 @@ const FormLogin = ({}: Props) => {
     </Form>
   );
 };
-
-export default FormLogin;

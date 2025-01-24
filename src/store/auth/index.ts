@@ -1,51 +1,13 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import {
-  TLoginSchema,
-  TRegistrationSchema,
-  TUserProfileSchema,
-} from "@/lib/schema";
-import AuthService, { User } from "@/lib/services/auth";
+import { createSlice } from "@reduxjs/toolkit";
+import { User } from "@/lib/services/auth";
 import { toast } from "sonner";
-
-export const register = createAsyncThunk(
-  "auth/register",
-  async (values: TRegistrationSchema, thunkAPI) =>
-    AuthService.register(values).catch((error) => {
-      return thunkAPI.rejectWithValue(error.message);
-    }),
-);
-
-export const login = createAsyncThunk(
-  "auth/login",
-  async (values: TLoginSchema, thunkAPI) =>
-    AuthService.login(values).catch((error) => {
-      return thunkAPI.rejectWithValue(error.message);
-    }),
-);
-
-export const getProfile = createAsyncThunk(
-  "auth/getProfile",
-  async (_, thunkAPI) =>
-    AuthService.getProfile().catch((error) => {
-      return thunkAPI.rejectWithValue(error.message);
-    }),
-);
-
-export const updateProfile = createAsyncThunk(
-  "auth/updateProfile",
-  async (values: TUserProfileSchema, thunkAPI) =>
-    AuthService.updateProfile(values).catch((error) => {
-      return thunkAPI.rejectWithValue(error.message);
-    }),
-);
-
-export const updateProfilePicture = createAsyncThunk(
-  "auth/updateProfilePicture",
-  async (data: FormData, thunkAPI) =>
-    AuthService.updateProfilePicture(data).catch((error) => {
-      return thunkAPI.rejectWithValue(error.message);
-    }),
-);
+import {
+  getProfile,
+  login,
+  register,
+  updateProfile,
+  updateProfilePicture,
+} from "./actions";
 
 type AuthState = {
   loading: boolean;
@@ -158,4 +120,6 @@ const authSlice = createSlice({
 });
 
 export const { logout } = authSlice.actions;
-export default authSlice.reducer;
+const authReducer = authSlice.reducer;
+export default authReducer;
+export * from "./actions";

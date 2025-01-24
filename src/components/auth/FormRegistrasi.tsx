@@ -13,15 +13,18 @@ import {
   FormItem,
   FormMessage,
 } from "../ui/form";
+import { useAppDispatch } from "@/store";
+import { register } from "@/store/auth";
 
-type Props = {
-  onSubmit: (values: TRegistrationSchema) => void;
-};
+type Props = {};
 
-const FormRegistrasi = ({ onSubmit }: Props) => {
+export const FormRegistrasi = ({}: Props) => {
   const form = useForm<TRegistrationSchema>({
     resolver: zodResolver(registrationScema),
   });
+
+  const dispatch = useAppDispatch();
+  const onSubmit = (values: TRegistrationSchema) => dispatch(register(values));
 
   return (
     <Form {...form}>
@@ -131,5 +134,3 @@ const FormRegistrasi = ({ onSubmit }: Props) => {
     </Form>
   );
 };
-
-export default FormRegistrasi;

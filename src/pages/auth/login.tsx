@@ -1,5 +1,4 @@
-import { AuthHeader } from "@/components/auth/AuthHeader";
-import FormLogin from "@/components/auth/FormLogin";
+import { AuthHeader, FormLogin } from "@/components/auth";
 
 type Props = {};
 

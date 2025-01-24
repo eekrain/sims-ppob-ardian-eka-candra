@@ -28,7 +28,7 @@ const topupBalance = async (values: TTopupSchema) =>
     .errorMessage("Gagal fetching list banner")
     .execute<TFetchResult<TBalance>>();
 
-type TTransactionItem = {
+export type TTransactionItem = {
   invoice_number: string;
   service_code: string;
   service_name: string;

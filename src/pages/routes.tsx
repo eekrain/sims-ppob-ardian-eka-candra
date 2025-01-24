@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router";
 
-import AuthLayout from "@/components/auth/Layout";
+import { AuthLayout } from "@/components/auth/Layout";
 import LoginPage from "./auth/login";
 import RegistrationPage from "./auth/registration";
 import Redirect from "@/components/Redirect";
