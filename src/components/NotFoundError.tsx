@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 type Props = {};
 
-const NotFoundError = (props: Props) => {
+const NotFoundError = ({}: Props) => {
   return (
     <Card className="mx-auto max-w-lg text-center">
       <CardHeader>

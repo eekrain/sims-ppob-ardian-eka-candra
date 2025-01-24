@@ -12,6 +12,7 @@ import AuthLayout from "./components/auth/Layout";
 import LoginPage from "./pages/auth/login";
 import RegistrationPage from "./pages/auth/registration";
 import Redirect from "./components/Redirect";
+import TransactionPage from "./pages/transaction";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/topup",
         element: <TopupPage />,
+      },
+      {
+        path: "/transaction",
+        element: <TransactionPage />,
       },
       {
         path: "*",

@@ -1,9 +1,9 @@
 import { SaldoCard, Welcome } from "@/components/home";
-import FormTopup from "@/components/topup/FormTopup";
+import TransactionList from "@/components/transaction/TransactionList";
 
 type Props = {};
 
-const TopupPage = ({}: Props) => {
+const TransactionPage = ({}: Props) => {
   return (
     <>
       <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[40%_1fr]">
@@ -11,9 +11,9 @@ const TopupPage = ({}: Props) => {
         <SaldoCard />
       </div>
 
-      <FormTopup />
+      <TransactionList />
     </>
   );
 };
 
-export default TopupPage;
+export default TransactionPage;
