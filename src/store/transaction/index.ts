@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TTransactionItem } from "@/lib/services/transaction";
+import { topupBalance } from "./actions";
+import { toast } from "sonner";
 
 type TransactionState = {
   balance: number;
@@ -25,6 +27,24 @@ const transactionSlice = createSlice({
   name: "transaction",
   initialState,
   reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(topupBalance.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(topupBalance.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.balance = payload.data?.balance!;
+        state.success = true;
+        toast.success(payload.message);
+      })
+      .addCase(topupBalance.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+        toast.error(payload as string);
+      });
+  },
 });
 
 const transactionReducer = transactionSlice.reducer;

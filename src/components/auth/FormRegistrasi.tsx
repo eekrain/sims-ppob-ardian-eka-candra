@@ -15,16 +15,19 @@ import {
 } from "../ui/form";
 import { useAppDispatch } from "@/store";
 import { register } from "@/store/auth";
+import { useNavigate } from "react-router";
 
 type Props = {};
 
 export const FormRegistrasi = ({}: Props) => {
+  const navigate = useNavigate();
   const form = useForm<TRegistrationSchema>({
     resolver: zodResolver(registrationScema),
   });
 
   const dispatch = useAppDispatch();
-  const onSubmit = (values: TRegistrationSchema) => dispatch(register(values));
+  const onSubmit = (values: TRegistrationSchema) =>
+    dispatch(register(values)).then(() => navigate("/auth"));
 
   return (
     <Form {...form}>

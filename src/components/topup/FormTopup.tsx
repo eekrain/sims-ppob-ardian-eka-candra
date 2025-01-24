@@ -1,13 +1,97 @@
+import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
 import { MdOutlineMoney } from "react-icons/md";
-type Props = {};
+import { topupSchema, TTopupSchema } from "@/lib/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "../ui/form";
+import { NumberInput } from "../ui/number-input";
+import { MyDialog, MyDialogProps } from "../MyDialog";
+import { useState } from "react";
+import { useAppDispatch } from "@/store";
+import { topupBalance } from "@/store/transaction";
 
 const TOPUP_BTNS = [10000, 20000, 50000, 100000, 250000, 500000];
 
+type Props = {};
+
 const FormTopup = ({}: Props) => {
+  const dispatch = useAppDispatch();
+  const form = useForm<TTopupSchema>({
+    resolver: zodResolver(topupSchema),
+    defaultValues: {
+      top_up_amount: 0,
+    },
+  });
+  const currTopup = form.watch("top_up_amount");
+
+  const [dialog, setDialog] = useState<MyDialogProps | null>(null);
+  const onSubmit = (values: TTopupSchema) => {
+    const formatted = new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0,
+    }).format(values.top_up_amount);
+
+    const onConfirm = () =>
+      dispatch(topupBalance(values))
+        .then((_res) => {
+          setDialog({
+            type: "success",
+            handleClose,
+            content: (
+              <p className="text-center">
+                Top Up sebesar
+                <br />
+                <span className="text-2xl font-semibold">{formatted}</span>
+                <br />
+                berhasil!
+              </p>
+            ),
+          });
+        })
+        .catch((_err) => {
+          setDialog({
+            type: "success",
+            handleClose,
+            content: (
+              <p className="text-center">
+                Top Up sebesar
+                <br />
+                <span className="text-2xl font-semibold">{formatted}</span>
+                <br />
+                gagal!
+              </p>
+            ),
+          });
+        });
+
+    const handleClose = () => setDialog(null);
+    setDialog({
+      type: "topup",
+      confirmation: {
+        warning: "Ya, lanjutkan Top Up",
+        onConfirm,
+      },
+      handleClose,
+      content: (
+        <p className="text-center">
+          Anda yakin untuk Top Up sebesar
+          <br />
+          <span className="text-2xl font-semibold">{formatted} ?</span>
+        </p>
+      ),
+    });
+  };
+
   return (
     <>
+      <MyDialog data={dialog} />
       <div className="mt-12">
         <h3 className="">
           Silahkan masukkan
@@ -16,30 +100,74 @@ const FormTopup = ({}: Props) => {
         </h3>
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-[60%_40%]">
-        <div className="flex flex-col gap-y-4">
-          <Input icon={<MdOutlineMoney />} />
-          <Button variant="destructive" className="hidden md:block" disabled>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-[60%_40%]"
+        >
+          <div className="flex flex-col gap-y-4">
+            <FormField
+              control={form.control}
+              name="top_up_amount"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <NumberInput
+                      icon={<MdOutlineMoney />}
+                      placeholder="masukkan nominal topup"
+                      className="w-full"
+                      allowNegative={false}
+                      isAllowed={({ floatValue }) => {
+                        return floatValue ? floatValue <= 1000000 : true;
+                      }}
+                      thousandSeparator=","
+                      defaultValue={0}
+                      {...field}
+                      onChange={(e) => {
+                        const val = e.currentTarget.value.replace(/[,]/g, "");
+                        form.setValue("top_up_amount", +val);
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button
+              variant="destructive"
+              className="hidden md:block"
+              disabled={+currTopup < 10000}
+            >
+              Top Up
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-3 gap-x-2 gap-y-4">
+            {TOPUP_BTNS.map((item) => (
+              <button
+                onClick={() => form.setValue("top_up_amount", item)}
+                key={item}
+                type="button"
+                className="rounded border border-gray-500 p-2"
+              >
+                {new Intl.NumberFormat("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                  maximumFractionDigits: 0,
+                }).format(item)}
+              </button>
+            ))}
+          </div>
+
+          <Button
+            variant="destructive"
+            className="mt-4 md:hidden"
+            disabled={+currTopup < 10000}
+          >
             Top Up
           </Button>
-        </div>
-
-        <div className="grid grid-cols-3 gap-x-2 gap-y-4">
-          {TOPUP_BTNS.map((item) => (
-            <button key={item} className="rounded border border-gray-500 p-2">
-              {new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR",
-                maximumFractionDigits: 0,
-              }).format(item)}
-            </button>
-          ))}
-        </div>
-
-        <Button variant="destructive" className="mt-4 md:hidden" disabled>
-          Top Up
-        </Button>
-      </div>
+        </form>
+      </Form>
     </>
   );
 };
