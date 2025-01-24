@@ -1,6 +1,6 @@
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-
+import { MdOutlineMoney } from "react-icons/md";
 type Props = {};
 
 const TOPUP_BTNS = [10000, 20000, 50000, 100000, 250000, 500000];
@@ -18,7 +18,7 @@ const FormTopup = ({}: Props) => {
 
       <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-[60%_40%]">
         <div className="flex flex-col gap-y-4">
-          <Input />
+          <Input icon={<MdOutlineMoney />} />
           <Button variant="destructive" className="hidden md:block" disabled>
             Top Up
           </Button>

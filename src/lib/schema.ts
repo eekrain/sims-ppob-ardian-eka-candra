@@ -45,3 +45,7 @@ export const userProfileSchema = baseAccountSchema.pick({
   last_name: true,
 });
 export type TUserProfileSchema = z.infer<typeof userProfileSchema>;
+
+export const topupSchema = z.object({
+  top_up_amount: z.number().min(10000, "Minimal topup Rp 10.000"),
+});
