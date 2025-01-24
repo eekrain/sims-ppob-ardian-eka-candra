@@ -84,7 +84,9 @@ const FormProfile = ({ isEditing, setEditing }: Props) => {
         </div>
       </div>
 
-      <p className="mt-6 text-3xl font-semibold">Ardian Eka Candra</p>
+      <p className="mt-6 text-3xl font-semibold">
+        {user?.first_name} {user?.last_name}
+      </p>
 
       <div className="mt-6 w-full max-w-lg space-y-6">
         <Form {...form}>

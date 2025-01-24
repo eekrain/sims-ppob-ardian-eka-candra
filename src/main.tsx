@@ -1,63 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import "./index.css";
 
-import NotFoundError from "./components/NotFoundError";
-import { DashboardLayout } from "./components/dashboard";
-import HomePage from "./pages/home";
-import TopupPage from "./pages/topup";
-
-import AuthLayout from "./components/auth/Layout";
-import LoginPage from "./pages/auth/login";
-import RegistrationPage from "./pages/auth/registration";
-import Redirect from "./components/Redirect";
-import TransactionPage from "./pages/transaction";
-import AccountPage from "./pages/account";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { Toaster } from "sonner";
+import allRoutes from "./pages/routes";
 
-const router = createBrowserRouter([
-  {
-    element: <DashboardLayout />,
-    children: [
-      {
-        index: true,
-        path: "/",
-        element: <HomePage />,
-      },
-      {
-        path: "/topup",
-        element: <TopupPage />,
-      },
-      {
-        path: "/transaction",
-        element: <TransactionPage />,
-      },
-      {
-        path: "/account",
-        element: <AccountPage />,
-      },
-      {
-        path: "*",
-        element: <NotFoundError />,
-      },
-    ],
-  },
-  {
-    path: "auth",
-    element: <AuthLayout />,
-    children: [
-      {
-        index: true,
-        element: <LoginPage />,
-      },
-      { path: "registration", element: <RegistrationPage /> },
-      { path: "*", element: <Redirect to="/auth" /> },
-    ],
-  },
-]);
+import "./index.css";
+
+const router = createBrowserRouter(allRoutes);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
