@@ -1,0 +1,18 @@
+meta {
+  name: Get Transaction History
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{BASE_URL}}/transaction/history
+  body: none
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "eka@gmail.com",
+    "password": "123123123"
+  }
+}

@@ -1,0 +1,18 @@
+meta {
+  name: Get All Banner
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{BASE_URL}}/banner
+  body: none
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "eka@gmail.com",
+    "password": "123123123"
+  }
+}

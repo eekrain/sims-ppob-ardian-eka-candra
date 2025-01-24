@@ -1,0 +1,18 @@
+meta {
+  name: Get Balance
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{BASE_URL}}/balance
+  body: none
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "eka@gmail.com",
+    "password": "123123123"
+  }
+}

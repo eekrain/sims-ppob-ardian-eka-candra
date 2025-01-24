@@ -1,11 +1,5 @@
 import { z } from "zod";
 
-export type TBaseFetchResult<T> = {
-  status: number;
-  message: string;
-  data: T | null;
-};
-
 const baseAccountSchema = z.object({
   email: z
     .string({ message: "Email harus diisi" })
@@ -49,3 +43,7 @@ export type TUserProfileSchema = z.infer<typeof userProfileSchema>;
 export const topupSchema = z.object({
   top_up_amount: z.number().min(10000, "Minimal topup Rp 10.000"),
 });
+export type TTopupSchema = z.infer<typeof topupSchema>;
+
+export type TCreateTransaction = { service_code: string };
+export type TTransactionHistoryQuery = { offset: number; limit: number };

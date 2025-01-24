@@ -1,27 +1,27 @@
-import { BASE_API_URL } from "@/lib/constant";
 import {
-  TBaseFetchResult,
   TLoginSchema,
   TRegistrationSchema,
   TUserProfileSchema,
 } from "@/lib/schema";
-import { MyFetch } from "./fetch-wrapper";
+import { MyFetch, TFetchResult } from "./fetch-wrapper";
+
+const myfetch = new MyFetch(import.meta.env.VITE_BASE_API_URL);
 
 const register = async (values: TRegistrationSchema) =>
-  new MyFetch(BASE_API_URL)
+  myfetch
     .url("/registration")
     .method("POST")
     .body(values)
     .errorMessage("Gagal registrasi user")
-    .execute<TBaseFetchResult<null>>();
+    .execute<TFetchResult<null>>();
 
 const login = async (values: TLoginSchema) =>
-  new MyFetch(BASE_API_URL)
+  myfetch
     .url("/login")
     .method("POST")
     .body(values)
     .errorMessage("Gagal registrasi user")
-    .execute<TBaseFetchResult<{ token: string }>>()
+    .execute<TFetchResult<{ token: string }>>()
     .then((res) => {
       localStorage.setItem("accessToken", res.data?.token!);
       return res;
@@ -35,30 +35,30 @@ export type User = {
 };
 
 const getProfile = async () =>
-  new MyFetch(BASE_API_URL)
+  myfetch
     .url("/profile")
     .method("GET")
     .bearer(localStorage.getItem("accessToken")!)
     .errorMessage("Gagal fetching user")
-    .execute<TBaseFetchResult<User>>();
+    .execute<TFetchResult<User>>();
 
 const updateProfile = async (values: TUserProfileSchema) =>
-  new MyFetch(BASE_API_URL)
+  myfetch
     .url("/profile/update")
     .method("PUT")
     .bearer(localStorage.getItem("accessToken")!)
     .body(values)
     .errorMessage("Gagal upload foto baru")
-    .execute<TBaseFetchResult<User>>();
+    .execute<TFetchResult<User>>();
 
 const updateProfilePicture = async (data: FormData) =>
-  new MyFetch(BASE_API_URL)
+  myfetch
     .url("/profile/image")
     .method("PUT")
     .bearer(localStorage.getItem("accessToken")!)
     .body(data)
     .errorMessage("Gagal upload foto baru")
-    .execute<TBaseFetchResult<User>>();
+    .execute<TFetchResult<User>>();
 
 const AuthService = {
   register,
