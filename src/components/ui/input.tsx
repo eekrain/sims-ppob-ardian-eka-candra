@@ -12,7 +12,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
       if (!placeholderIcon) return null;
       if (value) return null;
       return (
-        <span className="inline-flex items-center gap-2 absolute -z-10 left-0 top-0 h-full pl-3 text-muted-foreground">
+        <span className="absolute left-0 top-0 -z-10 inline-flex h-full items-center gap-2 pl-3 text-muted-foreground">
           {placeholderIcon}
           <span>{placeholder}</span>
         </span>
@@ -26,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
           type={type}
           className={cn(
             "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-5 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-            className
+            className,
           )}
           ref={ref}
           placeholder={placeholderIcon ? undefined : placeholder}
@@ -34,7 +34,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
         />
       </div>
     );
-  }
+  },
 );
 Input.displayName = "Input";
 

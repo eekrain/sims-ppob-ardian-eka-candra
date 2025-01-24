@@ -23,7 +23,7 @@ export const PromoCarousel = ({ promoList }: Props) => {
 
   return (
     <div className="mt-12">
-      <h3 className="text-sm font-medium mb-6">Temukan promo menarik</h3>
+      <h3 className="mb-6 text-sm font-medium">Temukan promo menarik</h3>
       <CarouselProvider
         visibleSlides={visibleSlides}
         step={visibleSlides}

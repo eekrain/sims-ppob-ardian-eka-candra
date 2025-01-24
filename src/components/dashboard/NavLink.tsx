@@ -13,9 +13,9 @@ export const MyNavLink = ({ href, children, className }: Props) => {
       to={href}
       className={({ isActive }) =>
         cn(
-          "text-muted-foreground hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50 font-semibold",
+          "font-semibold text-muted-foreground hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
           isActive && "text-red-600",
-          className
+          className,
         )
       }
     >

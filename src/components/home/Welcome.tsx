@@ -8,10 +8,10 @@ export const Welcome = (props: Props) => {
       <img
         src={profilePicture}
         alt="User profile picture"
-        className="rounded-full border size-[48px] md:size-[72px]"
+        className="size-[48px] rounded-full border md:size-[72px]"
       />
 
-      <p className="text-lg mt-4">
+      <p className="mt-4 text-lg">
         Selamat Datang, <br />
         <span className="text-2xl font-semibold">Ardian Eka Candra</span>
       </p>

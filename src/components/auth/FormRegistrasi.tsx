@@ -121,9 +121,9 @@ const FormRegistrasi = ({ onSubmit }: Props) => {
           Registrasi
         </Button>
 
-        <p className="text-sm text-center">
+        <p className="text-center text-sm">
           sudah punya akun? login{" "}
-          <a href="/auth" className="text-red-600 font-semibold">
+          <a href="/auth" className="font-semibold text-red-600">
             di sini
           </a>
         </p>

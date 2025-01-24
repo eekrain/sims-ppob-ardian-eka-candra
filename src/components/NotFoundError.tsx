@@ -5,9 +5,9 @@ type Props = {};
 
 const NotFoundError = (props: Props) => {
   return (
-    <Card className="max-w-lg mx-auto text-center">
+    <Card className="mx-auto max-w-lg text-center">
       <CardHeader>
-        <CardTitle className="text-destructive text-2xl">
+        <CardTitle className="text-2xl text-destructive">
           404 Not Found
         </CardTitle>
       </CardHeader>

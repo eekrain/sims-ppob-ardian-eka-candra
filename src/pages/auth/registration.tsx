@@ -24,7 +24,7 @@ const RegistrationPage = (props: Props) => {
   };
 
   return (
-    <div className="max-w-sm mx-auto">
+    <div className="mx-auto max-w-sm">
       <AuthHeader
         description={
           <span>

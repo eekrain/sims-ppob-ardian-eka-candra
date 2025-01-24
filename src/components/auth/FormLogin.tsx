@@ -68,9 +68,9 @@ const FormLogin = ({ onSubmit }: Props) => {
           Registrasi
         </Button>
 
-        <p className="text-sm text-center">
+        <p className="text-center text-sm">
           belum punya akun? registrasi{" "}
-          <a href="/auth/registration" className="text-red-600 font-semibold">
+          <a href="/auth/registration" className="font-semibold text-red-600">
             di sini
           </a>
         </p>

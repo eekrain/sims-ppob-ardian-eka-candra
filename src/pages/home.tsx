@@ -6,7 +6,7 @@ type Props = {};
 const HomePage = ({}: Props) => {
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-[40%_1fr] gap-4 items-center">
+      <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[40%_1fr]">
         <Welcome />
         <SaldoCard />
       </div>

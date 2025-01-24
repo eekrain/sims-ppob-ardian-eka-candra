@@ -16,11 +16,11 @@ type Props = {};
 export const SaldoCard = (props: Props) => {
   const [show, setShow] = useState(false);
   return (
-    <div className="relative p-6 rounded-2xl overflow-hidden">
+    <div className="relative overflow-hidden rounded-2xl p-6">
       <img
         src={bgSaldo}
         alt="Background Saldo"
-        className="w-full h-full absolute left-0 top-0 -z-10"
+        className="absolute left-0 top-0 -z-10 h-full w-full"
       />
       <div className="flex flex-col gap-4 text-white">
         <p>Saldo Anda</p>
@@ -30,13 +30,13 @@ export const SaldoCard = (props: Props) => {
 
         <button
           onClick={() => setShow((prev) => !prev)}
-          className="w-fit text-xs md:text-sm inline-flex items-center gap-2 pb-1 border-b border-transparent hover:border-white "
+          className="inline-flex w-fit items-center gap-2 border-b border-transparent pb-1 text-xs hover:border-white md:text-sm"
         >
           <span>Lihat Saldo</span>
           {show ? (
-            <AiOutlineEyeInvisible className="size-4 inline" />
+            <AiOutlineEyeInvisible className="inline size-4" />
           ) : (
-            <AiOutlineEye className="size-4 inline" />
+            <AiOutlineEye className="inline size-4" />
           )}
         </button>
       </div>

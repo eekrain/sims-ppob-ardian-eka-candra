@@ -9,12 +9,12 @@ const AuthLayout = ({}: Props) => {
     <>
       <Toaster />
 
-      <div className="min-h-screen grid grid-cols-2 items-center">
+      <div className="grid min-h-screen grid-cols-2 items-center">
         <Outlet />
         <img
           src={ilustrasiLogin}
           alt="Ilustrasi Login"
-          className="h-screen w-full object-cover hidden md:block"
+          className="hidden h-screen w-full object-cover md:block"
         />
       </div>
     </>
