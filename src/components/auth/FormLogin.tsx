@@ -35,7 +35,7 @@ const FormLogin = ({ onSubmit }: Props) => {
             <FormItem>
               <FormControl>
                 <Input
-                  placeholderIcon={<MdAlternateEmail />}
+                  icon={<MdAlternateEmail />}
                   placeholder="masukkan email anda"
                   type="email"
                   {...field}
@@ -53,7 +53,7 @@ const FormLogin = ({ onSubmit }: Props) => {
             <FormItem>
               <FormControl>
                 <Input
-                  placeholderIcon={<GrLock />}
+                  icon={<GrLock />}
                   placeholder="masukkan password anda"
                   type="password"
                   {...field}

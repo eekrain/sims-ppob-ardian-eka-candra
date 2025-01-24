@@ -3,33 +3,29 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 type Props = React.ComponentProps<"input"> & {
-  placeholderIcon?: JSX.Element;
+  icon?: JSX.Element;
 };
 
 const Input = React.forwardRef<HTMLInputElement, Props>(
-  ({ className, type, placeholder, placeholderIcon, value, ...props }, ref) => {
-    const Placeholder = () => {
-      if (!placeholderIcon) return null;
-      if (value) return null;
-      return (
-        <span className="absolute left-0 top-0 -z-10 inline-flex h-full items-center gap-2 pl-3 text-muted-foreground">
-          {placeholderIcon}
-          <span>{placeholder}</span>
-        </span>
-      );
-    };
-
+  ({ className, type, icon, value, ...props }, ref) => {
     return (
       <div className="relative">
-        <Placeholder />
+        <span
+          className={cn(
+            "absolute left-0 top-0 -z-10 inline-flex h-full items-center gap-2 pl-3",
+            !value && "text-muted-foreground",
+          )}
+        >
+          {icon}
+        </span>
         <input
           type={type}
           className={cn(
-            "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-5 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+            "flex h-9 w-full rounded border border-input bg-transparent py-5 pl-9 pr-3 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed md:text-sm",
             className,
           )}
           ref={ref}
-          placeholder={placeholderIcon ? undefined : placeholder}
+          value={value}
           {...props}
         />
       </div>

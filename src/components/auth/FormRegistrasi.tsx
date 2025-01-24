@@ -36,7 +36,7 @@ const FormRegistrasi = ({ onSubmit }: Props) => {
             <FormItem>
               <FormControl>
                 <Input
-                  placeholderIcon={<MdAlternateEmail />}
+                  icon={<MdAlternateEmail />}
                   placeholder="masukkan email anda"
                   type="email"
                   {...field}
@@ -54,7 +54,7 @@ const FormRegistrasi = ({ onSubmit }: Props) => {
             <FormItem>
               <FormControl>
                 <Input
-                  placeholderIcon={<FaRegUser />}
+                  icon={<FaRegUser />}
                   placeholder="nama depan"
                   {...field}
                 />
@@ -71,7 +71,7 @@ const FormRegistrasi = ({ onSubmit }: Props) => {
             <FormItem>
               <FormControl>
                 <Input
-                  placeholderIcon={<FaRegUser />}
+                  icon={<FaRegUser />}
                   placeholder="nama belakang"
                   {...field}
                 />
@@ -88,7 +88,7 @@ const FormRegistrasi = ({ onSubmit }: Props) => {
             <FormItem>
               <FormControl>
                 <Input
-                  placeholderIcon={<GrLock />}
+                  icon={<GrLock />}
                   placeholder="buat password"
                   type="password"
                   {...field}
@@ -106,7 +106,7 @@ const FormRegistrasi = ({ onSubmit }: Props) => {
             <FormItem>
               <FormControl>
                 <Input
-                  placeholderIcon={<GrLock />}
+                  icon={<GrLock />}
                   placeholder="konfirmasi password"
                   type="password"
                   {...field}

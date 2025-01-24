@@ -13,6 +13,7 @@ import LoginPage from "./pages/auth/login";
 import RegistrationPage from "./pages/auth/registration";
 import Redirect from "./components/Redirect";
 import TransactionPage from "./pages/transaction";
+import AccountPage from "./pages/account";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/transaction",
         element: <TransactionPage />,
+      },
+      {
+        path: "/account",
+        element: <AccountPage />,
       },
       {
         path: "*",
