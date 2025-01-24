@@ -1,4 +1,4 @@
 export * from "./PPOBMenu";
-export * from "./PromoCarousel";
+export * from "./BannerCarousel";
 export * from "./SaldoCard";
 export * from "./Welcome";

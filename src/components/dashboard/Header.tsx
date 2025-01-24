@@ -2,9 +2,14 @@ import { NavLink } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import Logo from "@/assets/Logo.png";
-import { NAV_LINKS } from "@/lib/constant";
 import { IoMenu } from "react-icons/io5";
 import { MyNavLink } from "./NavLink";
+
+export const NAV_LINKS = [
+  { title: "Top Up", href: "/topup" },
+  { title: "Transaction", href: "/transaction" },
+  { title: "Akun", href: "/account" },
+];
 
 export const DashboardHeader = () => {
   return (

@@ -1,14 +1,20 @@
-import { TBanner } from "@/lib/constant";
 import { useBreakpointEffect } from "@/lib/utils";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { getAllBanners } from "@/store/information";
 import { CarouselProvider, Image, Slide, Slider } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-type Props = {
-  promoList: TBanner[];
-};
+type Props = {};
 
-export const PromoCarousel = ({ promoList }: Props) => {
+export const BannerCarousel = ({}: Props) => {
+  const dispatch = useAppDispatch();
+  const banners = useAppSelector((state) => state.information.banners);
+
+  useEffect(() => {
+    dispatch(getAllBanners());
+  }, []);
+
   const [visibleSlides, setVisibleSlides] = useState(1);
 
   useBreakpointEffect("sm", (match) => {
@@ -21,23 +27,25 @@ export const PromoCarousel = ({ promoList }: Props) => {
     if (match) setVisibleSlides(4);
   });
 
+  if (banners.length === 0) return null;
+
   return (
     <div className="mt-12">
       <h3 className="mb-6 text-sm font-medium">Temukan promo menarik</h3>
       <CarouselProvider
         visibleSlides={visibleSlides}
         step={visibleSlides}
-        totalSlides={promoList.length}
+        totalSlides={banners.length}
         naturalSlideWidth={270}
         naturalSlideHeight={110}
         interval={3000}
         isPlaying={true}
       >
         <Slider>
-          {promoList.map((item, i) => (
-            <Slide key={item.title} tag="a" index={i}>
+          {banners.map((item, i) => (
+            <Slide key={item.banner_name} tag="a" index={i}>
               <Image
-                src={item.img}
+                src={item.banner_image}
                 className="object-contain"
                 hasMasterSpinner={false}
               />

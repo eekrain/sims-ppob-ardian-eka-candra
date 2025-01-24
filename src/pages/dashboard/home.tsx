@@ -1,5 +1,9 @@
-import { PPOBMenu, PromoCarousel, SaldoCard, Welcome } from "@/components/home";
-import { PPOB_MENU, PROMO_BANNER } from "@/lib/constant";
+import {
+  PPOBMenu,
+  BannerCarousel,
+  SaldoCard,
+  Welcome,
+} from "@/components/home";
 
 type Props = {};
 
@@ -10,8 +14,8 @@ const HomePage = ({}: Props) => {
         <Welcome />
         <SaldoCard />
       </div>
-      <PPOBMenu menuList={PPOB_MENU} />
-      <PromoCarousel promoList={PROMO_BANNER} />
+      <PPOBMenu />
+      <BannerCarousel />
     </>
   );
 };
