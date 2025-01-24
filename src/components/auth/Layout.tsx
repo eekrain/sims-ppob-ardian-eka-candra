@@ -9,7 +9,7 @@ const AuthLayout = ({}: Props) => {
     <>
       <Toaster />
 
-      <div className="grid min-h-screen grid-cols-2 items-center">
+      <div className="grid min-h-screen grid-cols-1 items-center md:grid-cols-[60%_40%] lg:grid-cols-2">
         <Outlet />
         <img
           src={ilustrasiLogin}
