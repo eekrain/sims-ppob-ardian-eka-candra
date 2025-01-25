@@ -3,7 +3,7 @@ import { z } from "zod";
 const baseAccountSchema = z.object({
   email: z
     .string({ message: "Email harus diisi" })
-    .email({ message: "Email harus diisi" }),
+    .email({ message: "Email tidak valid" }),
   first_name: z
     .string({ message: "Nama depan harus diisi" })
     .min(1, { message: "Nama depan harus diisi" }),
