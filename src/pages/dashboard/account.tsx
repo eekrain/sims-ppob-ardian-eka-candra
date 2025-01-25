@@ -1,4 +1,4 @@
-import FormProfile from "@/components/account/FormProfile";
+import { FormProfile } from "@/components/account";
 import { useState } from "react";
 
 type Props = {};

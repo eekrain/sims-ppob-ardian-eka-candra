@@ -8,7 +8,7 @@ import { MdOutlineMoney } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { useState } from "react";
-import { MyDialog, MyDialogProps } from "@/components/MyDialog";
+import { MyDialog, MyDialogProps } from "@/components/common";
 import { createPayment } from "@/store/transaction";
 import { useNavigate } from "react-router";
 

@@ -16,7 +16,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { logout, updateProfile, updateProfilePicture } from "@/store/auth";
 import { useEffect } from "react";
-import MyAvatar from "@/components/MyAvatar";
+import { MyAvatar } from "@/components/common";
 import { toast } from "sonner";
 
 type Props = {

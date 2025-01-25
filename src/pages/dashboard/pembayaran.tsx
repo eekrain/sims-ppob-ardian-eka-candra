@@ -1,5 +1,5 @@
 import { WelcomeWithSaldo } from "@/components/home";
-import NotFoundError from "@/components/NotFoundError";
+import { NotFoundError } from "@/components/common";
 import { FormPembayaran } from "@/components/pembayaran";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { getAllServices } from "@/store/information";

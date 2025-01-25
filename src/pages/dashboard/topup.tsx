@@ -1,5 +1,5 @@
 import { SaldoCard, Welcome } from "@/components/home";
-import FormTopup from "@/components/topup/FormTopup";
+import { FormTopup } from "@/components/topup";
 
 type Props = {};
 

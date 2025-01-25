@@ -11,7 +11,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { NumberInput } from "@/components/ui/number-input";
-import { MyDialog, MyDialogProps } from "@/components/MyDialog";
+import { MyDialog, MyDialogProps } from "@/components/common";
 import { useState } from "react";
 import { useAppDispatch } from "@/store";
 import { topupBalance } from "@/store/transaction";
@@ -21,7 +21,7 @@ const TOPUP_BTNS = [10000, 20000, 50000, 100000, 250000, 500000];
 
 type Props = {};
 
-const FormTopup = ({}: Props) => {
+export const FormTopup = ({}: Props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const form = useForm<TTopupSchema>({
@@ -166,5 +166,3 @@ const FormTopup = ({}: Props) => {
     </>
   );
 };
-
-export default FormTopup;

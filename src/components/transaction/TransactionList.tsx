@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 
 type Props = {};
-const TransactionList = ({}: Props) => {
+export const TransactionList = ({}: Props) => {
   const dispatch = useAppDispatch();
 
   const { history, limit, offset, hasMore, totalCount } = useAppSelector(
@@ -74,5 +74,3 @@ const TransactionList = ({}: Props) => {
     </div>
   );
 };
-
-export default TransactionList;

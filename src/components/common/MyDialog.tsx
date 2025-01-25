@@ -4,7 +4,7 @@ import { DialogOverlay } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/Logo.png";
 import { IoClose, IoCheckmark } from "react-icons/io5";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,

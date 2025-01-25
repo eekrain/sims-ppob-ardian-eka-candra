@@ -1,5 +1,5 @@
 import { SaldoCard, Welcome } from "@/components/home";
-import TransactionList from "@/components/transaction/TransactionList";
+import { TransactionList } from "@/components/transaction";
 
 type Props = {};
 

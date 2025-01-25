@@ -1,9 +1,9 @@
 import { NavLink } from "react-router";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 type Props = {};
 
-const NotFoundError = ({}: Props) => {
+export const NotFoundError = ({}: Props) => {
   return (
     <Card className="mx-auto max-w-lg text-center">
       <CardHeader>
@@ -23,5 +23,3 @@ const NotFoundError = ({}: Props) => {
     </Card>
   );
 };
-
-export default NotFoundError;

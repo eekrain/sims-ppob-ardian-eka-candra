@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-const MyAvatar = ({ src, userName, className }: Props) => {
+export const MyAvatar = ({ src, userName, className }: Props) => {
   const [img, setImg] = useState(src);
 
   const alias = useMemo(
@@ -34,5 +34,3 @@ const MyAvatar = ({ src, userName, className }: Props) => {
     </Avatar>
   );
 };
-
-export default MyAvatar;
