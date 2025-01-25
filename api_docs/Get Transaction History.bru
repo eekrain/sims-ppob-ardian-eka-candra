@@ -5,9 +5,14 @@ meta {
 }
 
 get {
-  url: {{BASE_URL}}/transaction/history
+  url: {{BASE_URL}}/transaction/history?offset=0&limit=10
   body: none
   auth: inherit
+}
+
+params:query {
+  offset: 0
+  limit: 10
 }
 
 body:json {

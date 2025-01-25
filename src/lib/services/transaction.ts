@@ -32,7 +32,7 @@ export type TTransactionItem = {
   invoice_number: string;
   service_code: string;
   service_name: string;
-  transaction_type: string;
+  transaction_type: "TOPUP" | "PAYMENT";
   total_amount: number;
   created_on: string;
 };
@@ -47,12 +47,12 @@ const createTransaction = async (values: TCreateTransaction) =>
     .execute<TFetchResult<TTransactionItem>>();
 
 const getTransactionHistory = async ({
-  limit = 0,
-  offset = 5,
+  offset,
+  limit,
 }: TTransactionHistoryQuery) =>
   myfetch
     .url(`/transaction/history?offset=${offset}&limit=${limit}`)
-    .method("POST")
+    .method("GET")
     .bearer(localStorage.getItem("accessToken")!)
     .errorMessage("Gagal fetching list banner")
     .execute<
