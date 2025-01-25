@@ -1,6 +1,6 @@
 # SIMS PPOB - Ardian Eka Candra
 
-Aplikasi **SIMS PPOB** adalah aplikasi untuk pembayaran yang digunakan sebagai assignment Front End Programmer yang dibuat mengunakan React + Vite, dan state management menggunakan Redux. Semua code di tulis dengan type safe menggunakan Typescript. Fitur yang dibangun antara lain:
+Aplikasi **SIMS PPOB** adalah aplikasi untuk pembayaran yang digunakan sebagai assignment Front End Programmer yang dibuat mengunakan React + Vite, dan state management menggunakan Redux. Akses form di-validasi dengan [zod validator](https://zod.dev/) dan di manage menggunakan [react-hook-form](https://react-hook-form.com/). UI Library tambahan menggunakan [shadcn](https://ui.shadcn.com/) untuk mempercepat pengerjaan. Semua code di tulis dengan type safe menggunakan Typescript. Fitur yang dibangun antara lain:
 
 1. Registrasi
 2. Login
