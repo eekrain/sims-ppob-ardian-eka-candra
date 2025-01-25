@@ -8,9 +8,8 @@ type FetchMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 export class MyFetch {
   private _baseUrl = "";
   private _url = "";
-  private _bearerToken: string | null = null;
   private _headers: Record<string, string> = {
-    "content-type": "application/json",
+    "Content-Type": "application/json",
   };
   private _method: FetchMethod = "GET";
   private _body: any;
@@ -21,6 +20,7 @@ export class MyFetch {
   }
 
   method(method: FetchMethod) {
+    if (method === "GET") this._body = undefined;
     this._method = method;
     return this;
   }
@@ -31,12 +31,15 @@ export class MyFetch {
   }
 
   bearer(token?: string | null) {
-    if (token) this._bearerToken = token;
+    if (token) this._headers["Authorization"] = `Bearer ${token}`;
     return this;
   }
 
   body(body: any) {
-    this._body = body;
+    if (body instanceof FormData) {
+      this._body = body;
+      delete this._headers["Content-Type"];
+    } else if (body !== undefined) this._body = JSON.stringify(body);
     return this;
   }
 
@@ -46,29 +49,24 @@ export class MyFetch {
   }
 
   async execute<T>() {
-    if (this._bearerToken)
-      this._headers["authorization"] = `Bearer ${this._bearerToken}`;
-
-    const opts: Record<string, any> = {
+    const controller = new AbortController();
+    const opts: RequestInit = {
       method: this._method,
       headers: this._headers,
+      signal: controller.signal,
     };
-    if (this._method !== "GET" && this._body) {
-      if (this._body instanceof FormData) {
-        opts.body = this._body;
-        opts.headers = { authorization: opts.headers.authorization };
-      } else opts.body = JSON.stringify(this._body);
-    }
+    if (this._body) opts.body = this._body;
 
-    const res = await fetch(`${this._baseUrl}${this._url}`, opts);
-    const json = await res.json().catch((err) => {
-      console.error(`fetch ${this._url} error:`, err);
-      return null;
-    });
-    if (!res.ok) {
-      throw new Error(json?.message || this._errMesage);
-    } else {
-      return json as T;
+    try {
+      const res = await fetch(`${this._baseUrl}${this._url}`, opts);
+      const json = await res.json().catch(() => null);
+
+      if (!res.ok) throw new Error(json?.message || this._errMesage);
+      else return json as T;
+    } catch (err) {
+      throw err;
+    } finally {
+      controller.abort();
     }
   }
 }
