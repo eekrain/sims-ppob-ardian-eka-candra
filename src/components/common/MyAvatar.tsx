@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import fallbackImage from "@/assets/user_picture_fallback.png";
 
 type Props = {
@@ -10,6 +10,10 @@ type Props = {
 
 export const MyAvatar = ({ src, userName, className }: Props) => {
   const [img, setImg] = useState(src);
+
+  useEffect(() => {
+    setImg(src);
+  }, [src]);
 
   const alias = useMemo(
     () =>
