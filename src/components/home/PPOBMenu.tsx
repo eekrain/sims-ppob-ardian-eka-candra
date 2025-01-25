@@ -2,11 +2,15 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { TService } from "@/lib/services/information";
 import { useEffect } from "react";
 import { getAllServices } from "@/store/information";
+import { NavLink } from "react-router";
 
 type InnerProps = {} & TService;
-const MenuItem = ({ service_icon, service_name }: InnerProps) => {
+const MenuItem = ({ service_icon, service_name, service_code }: InnerProps) => {
   return (
-    <button className="flex flex-col items-center">
+    <NavLink
+      to={`/pembayaran/${service_code}`}
+      className="flex flex-col items-center"
+    >
       <img
         src={service_icon}
         alt={`Logo ${service_name}`}
@@ -15,7 +19,7 @@ const MenuItem = ({ service_icon, service_name }: InnerProps) => {
       <p className="text-wrap text-center text-xs text-muted-foreground">
         {service_name}
       </p>
-    </button>
+    </NavLink>
   );
 };
 
@@ -26,7 +30,7 @@ export const PPOBMenu = ({}: Props) => {
 
   useEffect(() => {
     dispatch(getAllServices());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="mt-12 grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-12 lg:gap-2">

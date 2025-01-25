@@ -1,5 +1,5 @@
 import {
-  TCreateTransaction,
+  TPaymentSchema,
   TTopupSchema,
   TTransactionHistoryQuery,
 } from "../schema";
@@ -28,23 +28,31 @@ const topupBalance = async (values: TTopupSchema) =>
     .errorMessage("Gagal fetching list banner")
     .execute<TFetchResult<TBalance>>();
 
-export type TTransactionItem = {
+export type TCreatePayment = {
   invoice_number: string;
   service_code: string;
   service_name: string;
-  transaction_type: "TOPUP" | "PAYMENT";
-  total_amount: number;
+  transaction_type: "PAYMENT";
+  total_amount: 50000;
   created_on: string;
 };
 
-const createTransaction = async (values: TCreateTransaction) =>
+const createPayment = async (values: TPaymentSchema) =>
   myfetch
     .url("/transaction")
     .method("POST")
     .bearer(localStorage.getItem("accessToken")!)
     .body(values)
     .errorMessage("Gagal fetching list banner")
-    .execute<TFetchResult<TTransactionItem>>();
+    .execute<TFetchResult<TCreatePayment>>();
+
+export type TTransactionItem = {
+  invoice_number: string;
+  transaction_type: "TOPUP" | "PAYMENT";
+  description: string;
+  total_amount: 10000;
+  created_on: string;
+};
 
 const getTransactionHistory = async ({
   offset,
@@ -66,7 +74,7 @@ const getTransactionHistory = async ({
 const TransactionService = {
   getBalance,
   topupBalance,
-  createTransaction,
+  createPayment,
   getTransactionHistory,
 };
 export default TransactionService;

@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import logo from "@/assets/Logo.png";
 import { IoClose, IoCheckmark } from "react-icons/io5";
 import { Button } from "./ui/button";
-const Dialog = DialogPrimitive.Root;
 
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
@@ -44,8 +43,14 @@ export type MyDialogProps =
 export const MyDialog = ({ data }: { data?: MyDialogProps }) => {
   if (!data) return null;
   return (
-    <Dialog open={Boolean(data)} onOpenChange={(_open) => data.handleClose()}>
+    <DialogPrimitive.Root
+      open={Boolean(data)}
+      onOpenChange={(_open) => data.handleClose()}
+    >
       <DialogContent>
+        <DialogPrimitive.Title className="invisible hidden">
+          {data.content}
+        </DialogPrimitive.Title>
         <div className="flex flex-col items-center space-y-2">
           {data.type === "success" ? (
             <div className="flex size-16 items-center justify-center rounded-full bg-emerald-500 text-white">
@@ -77,7 +82,7 @@ export const MyDialog = ({ data }: { data?: MyDialogProps }) => {
           </div>
         </div>
       </DialogContent>
-    </Dialog>
+    </DialogPrimitive.Root>
   );
 };
 export const MyDialogBigText = ({ children }: PropsWithChildren) => (

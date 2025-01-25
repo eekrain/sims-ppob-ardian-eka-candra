@@ -1,5 +1,6 @@
 import { useAppSelector } from "@/store";
 import MyAvatar from "../MyAvatar";
+import { SaldoCard } from "./SaldoCard";
 type Props = {};
 
 export const Welcome = ({}: Props) => {
@@ -19,3 +20,10 @@ export const Welcome = ({}: Props) => {
     </div>
   );
 };
+
+export const WelcomeWithSaldo = ({}: {}) => (
+  <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[40%_1fr]">
+    <Welcome />
+    <SaldoCard />
+  </div>
+);

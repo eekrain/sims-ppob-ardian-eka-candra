@@ -1,0 +1,17 @@
+meta {
+  name: Topup Balance
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{BASE_URL}}/topup
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {  
+    "top_up_amount": 10000
+  }
+}

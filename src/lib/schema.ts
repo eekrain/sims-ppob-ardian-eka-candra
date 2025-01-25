@@ -45,5 +45,9 @@ export const topupSchema = z.object({
 });
 export type TTopupSchema = z.infer<typeof topupSchema>;
 
-export type TCreateTransaction = { service_code: string };
+export const paymentSchema = z.object({
+  service_code: z.string().min(1),
+});
+export type TPaymentSchema = z.infer<typeof paymentSchema>;
+
 export type TTransactionHistoryQuery = { offset: number; limit: number };

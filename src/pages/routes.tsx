@@ -11,6 +11,7 @@ import TopupPage from "./dashboard/topup";
 import TransactionPage from "./dashboard/transaction";
 import AccountPage from "./dashboard/account";
 import NotFoundError from "@/components/NotFoundError";
+import PembayaranPage from "./dashboard/pembayaran";
 
 const allRoutes: RouteObject[] = [
   {
@@ -32,6 +33,10 @@ const allRoutes: RouteObject[] = [
       {
         path: "/account",
         element: <AccountPage />,
+      },
+      {
+        path: "/pembayaran/:service_code",
+        element: <PembayaranPage />,
       },
       {
         path: "*",

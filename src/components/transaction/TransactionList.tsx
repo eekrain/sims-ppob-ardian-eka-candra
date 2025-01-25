@@ -8,18 +8,18 @@ type Props = {};
 const TransactionList = ({}: Props) => {
   const dispatch = useAppDispatch();
 
-  const { history, limit, offset, hasMore } = useAppSelector(
+  const { history, limit, offset, hasMore, totalCount } = useAppSelector(
     (state) => state.transaction,
   );
 
   const hasFetched = useRef(false);
   useEffect(() => {
-    // Initial fetch
+    if (totalCount >= limit + offset) return;
     if (!hasFetched.current) {
       dispatch(getTransactionHistory({ limit, offset }));
       hasFetched.current = true;
     }
-  }, [dispatch, limit, offset]); // Only fetch when limit or offset changes
+  }, [dispatch, limit, offset, totalCount]); // Only fetch when limit or offset changes
 
   const loadMore = () => {
     dispatch(getTransactionHistory({ limit, offset: +offset + +limit }));
@@ -48,7 +48,7 @@ const TransactionList = ({}: Props) => {
                 maximumFractionDigits: 0,
               }).format(item.total_amount)}
             </p>
-            <p className="text-sm">{item.service_name}</p>
+            <p className="text-sm">{item.description}</p>
           </div>
           <p className="mt-4 text-right text-xs text-muted-foreground md:items-center md:text-left">
             {new Intl.DateTimeFormat("id-ID", {

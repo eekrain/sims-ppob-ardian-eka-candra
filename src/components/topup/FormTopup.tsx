@@ -15,12 +15,14 @@ import { MyDialog, MyDialogProps } from "../MyDialog";
 import { useState } from "react";
 import { useAppDispatch } from "@/store";
 import { topupBalance } from "@/store/transaction";
+import { useNavigate } from "react-router";
 
 const TOPUP_BTNS = [10000, 20000, 50000, 100000, 250000, 500000];
 
 type Props = {};
 
 const FormTopup = ({}: Props) => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const form = useForm<TTopupSchema>({
     resolver: zodResolver(topupSchema),
@@ -38,47 +40,40 @@ const FormTopup = ({}: Props) => {
       maximumFractionDigits: 0,
     }).format(values.top_up_amount);
 
-    const onConfirm = () =>
+    const onConfirm = () => {
+      const notif = (success: boolean): MyDialogProps => ({
+        type: success ? "success" : "error",
+        handleClose: () => {
+          setDialog(null);
+          navigate("/");
+        },
+        content: (
+          <p className="text-center">
+            Top Up sebesar
+            <br />
+            <span className="text-2xl font-semibold">{formatted}</span>
+            <br />
+            {success ? "berhasil!" : "gagal!"}
+          </p>
+        ),
+      });
+
       dispatch(topupBalance(values))
         .then((_res) => {
-          setDialog({
-            type: "success",
-            handleClose,
-            content: (
-              <p className="text-center">
-                Top Up sebesar
-                <br />
-                <span className="text-2xl font-semibold">{formatted}</span>
-                <br />
-                berhasil!
-              </p>
-            ),
-          });
+          setDialog(notif(true));
         })
         .catch((_err) => {
-          setDialog({
-            type: "success",
-            handleClose,
-            content: (
-              <p className="text-center">
-                Top Up sebesar
-                <br />
-                <span className="text-2xl font-semibold">{formatted}</span>
-                <br />
-                gagal!
-              </p>
-            ),
-          });
+          setDialog(notif(false));
         });
+    };
 
-    const handleClose = () => setDialog(null);
     setDialog({
       type: "topup",
       confirmation: {
         warning: "Ya, lanjutkan Top Up",
         onConfirm,
       },
-      handleClose,
+      handleClose: () => setDialog(null),
       content: (
         <p className="text-center">
           Anda yakin untuk Top Up sebesar

@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TTransactionItem } from "@/lib/services/transaction";
-import { getBalance, getTransactionHistory, topupBalance } from "./actions";
-import { toast } from "sonner";
+import {
+  createPayment,
+  getBalance,
+  getTransactionHistory,
+  topupBalance,
+} from "./actions";
 
 type TransactionState = {
   balance: number;
@@ -39,6 +43,9 @@ const transactionSlice = createSlice({
     setTransactionLimitPerPage: (state, action: PayloadAction<number>) => {
       state.limit = action.payload;
     },
+    resetTransactionHistory: (state) => {
+      state.history = [];
+    },
   },
   extraReducers(builder) {
     builder
@@ -50,12 +57,10 @@ const transactionSlice = createSlice({
         state.loading = false;
         state.balance = payload.data?.balance!;
         state.success = true;
-        toast.success(payload.message);
       })
       .addCase(topupBalance.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
-        toast.error(payload as string);
       })
       .addCase(getBalance.pending, (state) => {
         state.loading = true;
@@ -91,11 +96,28 @@ const transactionSlice = createSlice({
       .addCase(getTransactionHistory.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
+      })
+      .addCase(createPayment.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createPayment.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        const res = payload.data!;
+        state.balance -= res.total_amount;
+        state.success = true;
+      })
+      .addCase(createPayment.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
       });
   },
 });
-export const { toggleBalanceVisibility, setTransactionLimitPerPage } =
-  transactionSlice.actions;
+export const {
+  toggleBalanceVisibility,
+  setTransactionLimitPerPage,
+  resetTransactionHistory,
+} = transactionSlice.actions;
 const transactionReducer = transactionSlice.reducer;
 export default transactionReducer;
 export * from "./actions";
