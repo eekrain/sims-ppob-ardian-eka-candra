@@ -16,7 +16,6 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Poppins", ...tailwind_theme.fontFamily.sans],
-        mono: ["Victor Mono", ...tailwind_theme.fontFamily.mono],
       },
       borderRadius: {
         lg: "var(--radius)",

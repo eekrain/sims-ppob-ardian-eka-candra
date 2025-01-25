@@ -120,6 +120,7 @@ export const FormTopup = ({}: Props) => {
               )}
             />
             <Button
+              size="lg"
               type="submit"
               variant="destructive"
               className="hidden md:block"
@@ -147,6 +148,7 @@ export const FormTopup = ({}: Props) => {
           </div>
 
           <Button
+            size="lg"
             type="submit"
             variant="destructive"
             className="mt-4 md:hidden"

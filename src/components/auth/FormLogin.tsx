@@ -14,12 +14,17 @@ import {
 } from "@/components/ui/form";
 import { useAppDispatch } from "@/store";
 import { login } from "@/store/auth";
+import { NavLink } from "react-router";
 
 type Props = {};
 
 export const FormLogin = ({}: Props) => {
   const form = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   const dispatch = useAppDispatch();
@@ -73,9 +78,12 @@ export const FormLogin = ({}: Props) => {
 
         <p className="text-center text-sm">
           belum punya akun? registrasi{" "}
-          <a href="/auth/registration" className="font-semibold text-red-600">
+          <NavLink
+            to="/auth/registration"
+            className="font-semibold text-red-600"
+          >
             di sini
-          </a>
+          </NavLink>
         </p>
       </form>
     </Form>

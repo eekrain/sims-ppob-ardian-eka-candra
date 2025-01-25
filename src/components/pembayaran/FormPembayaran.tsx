@@ -85,7 +85,7 @@ export const FormPembayaran = ({ service }: Props) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="mt-12 grid grid-cols-1 gap-4"
+          className="mt-12 grid grid-cols-1 gap-6"
         >
           <FormField
             control={form.control}
@@ -110,10 +110,9 @@ export const FormPembayaran = ({ service }: Props) => {
             type="submit"
             size="lg"
             variant="destructive"
-            className="hidden md:block"
             disabled={service.service_tariff > balance || loading}
           >
-            Top Up
+            Bayar
           </Button>
         </form>
       </Form>

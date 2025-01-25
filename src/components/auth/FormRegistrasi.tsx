@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { useAppDispatch } from "@/store";
 import { register } from "@/store/auth";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 type Props = {};
 
@@ -23,6 +23,13 @@ export const FormRegistrasi = ({}: Props) => {
   const navigate = useNavigate();
   const form = useForm<TRegistrationSchema>({
     resolver: zodResolver(registrationScema),
+    defaultValues: {
+      email: "",
+      first_name: "",
+      last_name: "",
+      password: "",
+      password_confirm: "",
+    },
   });
 
   const dispatch = useAppDispatch();
@@ -129,9 +136,9 @@ export const FormRegistrasi = ({}: Props) => {
 
         <p className="text-center text-sm">
           sudah punya akun? login{" "}
-          <a href="/auth" className="font-semibold text-red-600">
+          <NavLink to="/auth" className="font-semibold text-red-600">
             di sini
-          </a>
+          </NavLink>
         </p>
       </form>
     </Form>

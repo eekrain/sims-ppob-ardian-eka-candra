@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@fontsource/poppins": "^5.1.1",
-    "@fontsource/victor-mono": "^5.1.1",
     "@hookform/resolvers": "^3.10.0",
     "@kodingdotninja/use-tailwind-breakpoint": "^1.0.0",
     "@radix-ui/react-avatar": "^1.1.2",

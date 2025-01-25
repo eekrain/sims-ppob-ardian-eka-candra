@@ -167,7 +167,7 @@ export const FormProfile = ({ isEditing, setEditing }: Props) => {
             <Button
               onClick={() => setEditing(true)}
               type="button"
-              variant="outline"
+              variant="destructive"
               size="lg"
               className="w-full"
             >
@@ -177,7 +177,7 @@ export const FormProfile = ({ isEditing, setEditing }: Props) => {
             <Button
               onClick={onLogout}
               type="button"
-              variant="destructive"
+              variant="outline"
               size="lg"
               className="w-full"
             >

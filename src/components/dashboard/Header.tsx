@@ -6,9 +6,9 @@ import { IoMenu } from "react-icons/io5";
 import { MyNavLink } from "./NavLink";
 
 export const NAV_LINKS = [
-  { title: "Top Up", href: "/topup" },
-  { title: "Transaction", href: "/transaction" },
-  { title: "Akun", href: "/account" },
+  { title: "Top Up", to: "/topup" },
+  { title: "Transaction", to: "/transaction" },
+  { title: "Akun", to: "/account" },
 ];
 
 export const DashboardHeader = () => {
@@ -25,7 +25,7 @@ export const DashboardHeader = () => {
         </NavLink>
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
           {NAV_LINKS.map((nav) => (
-            <MyNavLink key={nav.title} href={nav.href}>
+            <MyNavLink key={nav.title} to={nav.to}>
               {nav.title}
             </MyNavLink>
           ))}
@@ -48,7 +48,7 @@ export const DashboardHeader = () => {
                 {NAV_LINKS.map((nav) => (
                   <MyNavLink
                     key={nav.title}
-                    href={nav.href}
+                    to={nav.to}
                     className="text-sm font-medium"
                   >
                     {nav.title}

@@ -11,9 +11,6 @@ importers:
       '@fontsource/poppins':
         specifier: ^5.1.1
         version: 5.1.1
-      '@fontsource/victor-mono':
-        specifier: ^5.1.1
-        version: 5.1.1
       '@hookform/resolvers':
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.54.2(react@18.3.1))
@@ -439,9 +436,6 @@ packages:
 
   '@fontsource/poppins@5.1.1':
     resolution: {integrity: sha512-PQVKHGQOK+UpVNPzTFF9Z9ez3CIDkunfvRXGH95hiDoqWJc1shW4JFqe4tEoqnq7RtZaYrw9aWQq58L4eny5xg==}
-
-  '@fontsource/victor-mono@5.1.1':
-    resolution: {integrity: sha512-hcKeS1lC6tzvwTdM/KixXM644xDNS3E4pWPoxQx/ooHp4HkyN0Ku9sVQKhysBJC5hW0zMWRoBYPL0pZUEAdnVA==}
 
   '@hookform/resolvers@3.10.0':
     resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
@@ -2344,8 +2338,6 @@ snapshots:
   '@floating-ui/utils@0.2.9': {}
 
   '@fontsource/poppins@5.1.1': {}
-
-  '@fontsource/victor-mono@5.1.1': {}
 
   '@hookform/resolvers@3.10.0(react-hook-form@7.54.2(react@18.3.1))':
     dependencies:
