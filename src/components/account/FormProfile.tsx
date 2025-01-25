@@ -2,6 +2,8 @@ import { userProfileSchema, TUserProfileSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { FaPen, FaRegUser } from "react-icons/fa6";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -9,14 +11,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
+} from "@/components/ui/form";
 import { MdAlternateEmail } from "react-icons/md";
-import { Button } from "../ui/button";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { logout, updateProfile, updateProfilePicture } from "@/store/auth";
 import { useEffect } from "react";
-import MyAvatar from "../MyAvatar";
+import MyAvatar from "@/components/MyAvatar";
 import { toast } from "sonner";
 
 type Props = {

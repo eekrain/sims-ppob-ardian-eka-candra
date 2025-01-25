@@ -3,12 +3,12 @@ import { TService } from "@/lib/services/information";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormField } from "@/components/ui/form";
-import { NumberInput } from "../ui/number-input";
+import { NumberInput } from "@/components/ui/number-input";
 import { MdOutlineMoney } from "react-icons/md";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { useState } from "react";
-import { MyDialog, MyDialogProps } from "../MyDialog";
+import { MyDialog, MyDialogProps } from "@/components/MyDialog";
 import { createPayment } from "@/store/transaction";
 import { useNavigate } from "react-router";
 

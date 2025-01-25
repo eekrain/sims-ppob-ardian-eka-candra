@@ -1,17 +1,17 @@
 import { useForm } from "react-hook-form";
-import { Button } from "../ui/button";
 import { MdOutlineMoney } from "react-icons/md";
 import { topupSchema, TTopupSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "../ui/form";
-import { NumberInput } from "../ui/number-input";
-import { MyDialog, MyDialogProps } from "../MyDialog";
+} from "@/components/ui/form";
+import { NumberInput } from "@/components/ui/number-input";
+import { MyDialog, MyDialogProps } from "@/components/MyDialog";
 import { useState } from "react";
 import { useAppDispatch } from "@/store";
 import { topupBalance } from "@/store/transaction";

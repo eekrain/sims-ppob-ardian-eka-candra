@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/store";
-import MyAvatar from "../MyAvatar";
+import MyAvatar from "@/components/MyAvatar";
 import { SaldoCard } from "./SaldoCard";
 type Props = {};
 

@@ -2,7 +2,7 @@ import {
   TPaymentSchema,
   TTopupSchema,
   TTransactionHistoryQuery,
-} from "../schema";
+} from "@/lib/schema";
 import { MyFetch, TFetchResult } from "./fetch-wrapper";
 
 const myfetch = new MyFetch(import.meta.env.VITE_BASE_API_URL);

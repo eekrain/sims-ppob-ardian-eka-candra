@@ -1,18 +1,18 @@
-import { Input } from "../ui/input";
 import { MdAlternateEmail } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa6";
 import { GrLock } from "react-icons/gr";
-import { Button } from "../ui/button";
 import { registrationScema, TRegistrationSchema } from "@/lib/schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "../ui/form";
+} from "@/components/ui/form";
 import { useAppDispatch } from "@/store";
 import { register } from "@/store/auth";
 import { useNavigate } from "react-router";

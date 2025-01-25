@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { getTransactionHistory } from "@/store/transaction";
 import { useEffect, useRef } from "react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 type Props = {};
 const TransactionList = ({}: Props) => {
