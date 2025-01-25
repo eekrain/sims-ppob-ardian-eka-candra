@@ -8,9 +8,7 @@ type FetchMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 export class MyFetch {
   private _baseUrl = "";
   private _url = "";
-  private _headers: Record<string, string> = {
-    "Content-Type": "application/json",
-  };
+  private _headers: Record<string, string> = {};
   private _method: FetchMethod = "GET";
   private _body: any;
   private _errMesage = "Request error";
@@ -27,6 +25,8 @@ export class MyFetch {
 
   url(url: string) {
     this._url = url;
+    this._headers["Content-Type"] = "application/json";
+
     return this;
   }
 
@@ -40,6 +40,7 @@ export class MyFetch {
       this._body = body;
       delete this._headers["Content-Type"];
     } else if (body !== undefined) this._body = JSON.stringify(body);
+
     return this;
   }
 
