@@ -1,6 +1,11 @@
 import { NavLink } from "react-router";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import logo from "@/assets/logo.png";
 import { IoMenu } from "react-icons/io5";
 import { MyNavLink } from "./NavLink";
@@ -32,6 +37,7 @@ export const DashboardHeader = () => {
         </nav>
         <div className="flex items-center gap-4 md:hidden">
           <Sheet>
+            <SheetTitle className="sr-only">Navigation sidebar</SheetTitle>
             <SheetTrigger asChild>
               <Button
                 type="button"

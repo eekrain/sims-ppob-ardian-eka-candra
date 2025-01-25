@@ -3,9 +3,7 @@ import {
   TTopupSchema,
   TTransactionHistoryQuery,
 } from "@/lib/schema";
-import { MyFetch, TFetchResult } from "./fetch-wrapper";
-
-const myfetch = new MyFetch(import.meta.env.VITE_BASE_API_URL);
+import { myfetch, TFetchResult } from "./fetch-wrapper";
 
 export type TBalance = {
   balance: number;
@@ -13,18 +11,13 @@ export type TBalance = {
 
 const getBalance = async () =>
   myfetch
-    .url("/balance")
-    .method("GET")
-    .bearer(localStorage.getItem("accessToken")!)
-    .errorMessage("Gagal fetching list banner")
+    .GET("/balance")
+    .errorMessage("Gagal fetching saldo")
     .execute<TFetchResult<TBalance>>();
 
 const topupBalance = async (values: TTopupSchema) =>
   myfetch
-    .url("/topup")
-    .method("POST")
-    .bearer(localStorage.getItem("accessToken")!)
-    .body(values)
+    .POST("/topup", values)
     .errorMessage("Gagal fetching list banner")
     .execute<TFetchResult<TBalance>>();
 
@@ -39,11 +32,8 @@ export type TCreatePayment = {
 
 const createPayment = async (values: TPaymentSchema) =>
   myfetch
-    .url("/transaction")
-    .method("POST")
-    .bearer(localStorage.getItem("accessToken")!)
-    .body(values)
-    .errorMessage("Gagal fetching list banner")
+    .POST("/transaction", values)
+    .errorMessage("Gagal melakukan payment")
     .execute<TFetchResult<TCreatePayment>>();
 
 export type TTransactionItem = {
@@ -59,10 +49,8 @@ const getTransactionHistory = async ({
   limit,
 }: TTransactionHistoryQuery) =>
   myfetch
-    .url(`/transaction/history?offset=${offset}&limit=${limit}`)
-    .method("GET")
-    .bearer(localStorage.getItem("accessToken")!)
-    .errorMessage("Gagal fetching list banner")
+    .GET(`/transaction/history?offset=${offset}&limit=${limit}`)
+    .errorMessage("Gagal fetching histori transaksi")
     .execute<
       TFetchResult<{
         offset: number;

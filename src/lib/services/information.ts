@@ -1,6 +1,4 @@
-import { MyFetch, TFetchResult } from "./fetch-wrapper";
-
-const myfetch = new MyFetch(import.meta.env.VITE_BASE_API_URL);
+import { myfetch, TFetchResult } from "./fetch-wrapper";
 
 export type TBanner = {
   banner_name: string;
@@ -9,9 +7,7 @@ export type TBanner = {
 };
 const getAllBanner = async () =>
   myfetch
-    .url("/banner")
-    .method("GET")
-    .bearer(localStorage.getItem("accessToken")!)
+    .GET("/banner")
     .errorMessage("Gagal fetching list banner")
     .execute<TFetchResult<TBanner[]>>();
 
@@ -23,9 +19,7 @@ export type TService = {
 };
 const getAllServices = async () =>
   myfetch
-    .url("/services")
-    .method("GET")
-    .bearer(localStorage.getItem("accessToken")!)
+    .GET("/services")
     .errorMessage("Gagal fetching list service")
     .execute<TFetchResult<TService[]>>();
 

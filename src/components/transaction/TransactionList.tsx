@@ -38,7 +38,7 @@ export const TransactionList = ({}: Props) => {
             key={item.invoice_number}
             className="rounded-lg border bg-white p-6"
           >
-            <div className="flex flex-col gap-4 md:flex-row md:justify-between">
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-between">
               <p
                 className={cn(
                   "text-2xl font-semibold",
@@ -56,7 +56,7 @@ export const TransactionList = ({}: Props) => {
               </p>
               <p className="text-sm">{item.description}</p>
             </div>
-            <p className="mt-4 text-right text-xs text-muted-foreground md:items-center md:text-left">
+            <p className="mt-4 text-right text-xs text-muted-foreground sm:items-center sm:text-left">
               {new Intl.DateTimeFormat("id-ID", {
                 year: "numeric",
                 month: "long",

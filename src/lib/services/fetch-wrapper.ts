@@ -3,45 +3,36 @@ export type TFetchResult<T> = {
   message: string;
   data: T | null;
 };
+const BASE_URL = import.meta.env.VITE_BASE_API_URL;
 
-type FetchMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
-export class MyFetch {
-  private _baseUrl = "";
+const initHeaders = (body?: any) =>
+  body instanceof FormData
+    ? { body: body }
+    : {
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      };
+const GET = (url: string) =>
+  new MyFetch({ url, opts: { method: "GET", ...initHeaders() } });
+const POST = (url: string, body: any) =>
+  new MyFetch({ url, opts: { method: "POST", ...initHeaders(body) } });
+const PUT = (url: string, body: any) =>
+  new MyFetch({ url, opts: { method: "PUT", ...initHeaders(body) } });
+const PATCH = (url: string, body: any) =>
+  new MyFetch({ url, opts: { method: "PATCH", ...initHeaders(body) } });
+const DELETE = (url: string) =>
+  new MyFetch({ url, opts: { method: "DELETE", ...initHeaders() } });
+
+export const myfetch = { GET, POST, PUT, PATCH, DELETE };
+
+class MyFetch {
   private _url = "";
-  private _headers: Record<string, string> = {};
-  private _method: FetchMethod = "GET";
-  private _body: any;
+  private _opts: any = {};
   private _errMesage = "Request error";
 
-  constructor(baseUrl: string) {
-    this._baseUrl = baseUrl;
-  }
-
-  method(method: FetchMethod) {
-    if (method === "GET") this._body = undefined;
-    this._method = method;
-    return this;
-  }
-
-  url(url: string) {
-    this._url = url;
-    this._headers["Content-Type"] = "application/json";
-
-    return this;
-  }
-
-  bearer(token?: string | null) {
-    if (token) this._headers["Authorization"] = `Bearer ${token}`;
-    return this;
-  }
-
-  body(body: any) {
-    if (body instanceof FormData) {
-      this._body = body;
-      delete this._headers["Content-Type"];
-    } else if (body !== undefined) this._body = JSON.stringify(body);
-
-    return this;
+  constructor(opts: any) {
+    this._opts = opts.opts;
+    this._url = opts.url;
   }
 
   errorMessage(errMesage: string) {
@@ -51,21 +42,17 @@ export class MyFetch {
 
   async execute<T>() {
     const controller = new AbortController();
-    const opts: RequestInit = {
-      method: this._method,
-      headers: this._headers,
-      signal: controller.signal,
-    };
-    if (this._body) opts.body = this._body;
+    const token = localStorage.getItem("accessToken");
+    if (token) this._opts.headers["Authorization"] = `Bearer ${token}`;
 
     try {
-      const res = await fetch(`${this._baseUrl}${this._url}`, opts);
+      const res = await fetch(`${BASE_URL}${this._url}`, this._opts);
       const json = await res.json().catch(() => null);
 
       if (!res.ok) throw new Error(json?.message || this._errMesage);
       else return json as T;
-    } catch (err) {
-      throw err;
+    } catch (err: any) {
+      throw new Error(err.message);
     } finally {
       controller.abort();
     }

@@ -53,13 +53,10 @@ export const FormTopup = ({}: Props) => {
         ],
       });
 
-      dispatch(topupBalance(values))
-        .then((_res) => {
-          setDialog(notif(true));
-        })
-        .catch((_err) => {
-          setDialog(notif(false));
-        });
+      dispatch(topupBalance(values)).then((res) => {
+        if (res.type.includes("reject")) setDialog(notif(false));
+        else setDialog(notif(true));
+      });
     };
 
     setDialog({
