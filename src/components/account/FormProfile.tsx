@@ -24,7 +24,7 @@ type Props = {
   setEditing: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const FormProfile = ({ isEditing, setEditing }: Props) => {
+export const FormProfile = ({ isEditing, setEditing }: Props) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
   const form = useForm<TUserProfileSchema>({
@@ -188,5 +188,3 @@ const FormProfile = ({ isEditing, setEditing }: Props) => {
     </div>
   );
 };
-
-export default FormProfile;
