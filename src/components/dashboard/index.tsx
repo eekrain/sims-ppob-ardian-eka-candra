@@ -3,10 +3,9 @@ import { DashboardHeader } from "./Header";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { useEffect, useRef } from "react";
 import { getProfile, logout } from "@/store/auth";
+import { MyDialog } from "../common";
 
-type Props = {};
-
-export const DashboardLayout = ({}: Props) => {
+export const DashboardLayout = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -33,6 +32,7 @@ export const DashboardLayout = ({}: Props) => {
 
   return (
     <>
+      <MyDialog />
       <DashboardHeader />
       <div className="container mt-12 pb-20">
         <Outlet />

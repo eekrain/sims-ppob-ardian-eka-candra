@@ -7,10 +7,9 @@ import { NumberInput } from "@/components/ui/number-input";
 import { MdOutlineMoney } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { useState } from "react";
-import { MyDialog, MyDialogProps } from "@/components/common";
 import { createPayment } from "@/store/transaction";
 import { useNavigate } from "react-router";
+import { MyDialogProps, useDialog } from "@/store/app";
 
 type Props = {
   service: TService;
@@ -19,14 +18,13 @@ type Props = {
 export const FormPembayaran = ({ service }: Props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { setDialog } = useDialog();
   const form = useForm<TPaymentSchema>({
     resolver: zodResolver(paymentSchema),
     defaultValues: { service_code: service.service_code },
   });
 
   const { balance, loading } = useAppSelector((state) => state.transaction);
-
-  const [dialog, setDialog] = useState<MyDialogProps | null>(null);
 
   const onSubmit = (values: TPaymentSchema) => {
     const formatted = new Intl.NumberFormat("id-ID", {
@@ -42,15 +40,11 @@ export const FormPembayaran = ({ service }: Props) => {
           setDialog(null);
           navigate("/");
         },
-        content: (
-          <p className="text-center">
-            Pembayaran {service.service_name} sebesar
-            <br />
-            <span className="text-2xl font-semibold">{formatted}</span>
-            <br />
-            {success ? "berhasil!" : "gagal!"}
-          </p>
-        ),
+        content: [
+          { normal: `Pembayaran ${service.service_name} sebesar` },
+          { big: formatted },
+          { normal: success ? "berhasil!" : "gagal!" },
+        ],
       });
 
       dispatch(createPayment(values))
@@ -69,20 +63,15 @@ export const FormPembayaran = ({ service }: Props) => {
         onConfirm,
       },
       handleClose: () => setDialog(null),
-      content: (
-        <p className="text-center">
-          Beli {service.service_name} senilai
-          <br />
-          <span className="text-2xl font-semibold">{formatted} ?</span>
-        </p>
-      ),
+      content: [
+        { normal: `Beli ${service.service_name} senilai` },
+        { big: `${formatted} ?` },
+      ],
     });
   };
 
   return (
     <div className="mt-12">
-      <MyDialog data={dialog} />
-
       <p className="text-lg">PemBayaran</p>
       <div className="mt-4 flex items-center gap-4">
         <img

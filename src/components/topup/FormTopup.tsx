@@ -11,11 +11,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { NumberInput } from "@/components/ui/number-input";
-import { MyDialog, MyDialogProps } from "@/components/common";
-import { useState } from "react";
 import { useAppDispatch } from "@/store";
 import { topupBalance } from "@/store/transaction";
 import { useNavigate } from "react-router";
+import { MyDialogProps, useDialog } from "@/store/app";
 
 const TOPUP_BTNS = [10000, 20000, 50000, 100000, 250000, 500000];
 
@@ -24,6 +23,7 @@ type Props = {};
 export const FormTopup = ({}: Props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { setDialog } = useDialog();
   const form = useForm<TTopupSchema>({
     resolver: zodResolver(topupSchema),
     defaultValues: {
@@ -32,7 +32,6 @@ export const FormTopup = ({}: Props) => {
   });
   const currTopup = form.watch("top_up_amount");
 
-  const [dialog, setDialog] = useState<MyDialogProps | null>(null);
   const onSubmit = (values: TTopupSchema) => {
     const formatted = new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -47,15 +46,11 @@ export const FormTopup = ({}: Props) => {
           setDialog(null);
           navigate("/");
         },
-        content: (
-          <p className="text-center">
-            Top Up sebesar
-            <br />
-            <span className="text-2xl font-semibold">{formatted}</span>
-            <br />
-            {success ? "berhasil!" : "gagal!"}
-          </p>
-        ),
+        content: [
+          { normal: "Top Up sebesar" },
+          { big: formatted },
+          { normal: success ? "berhasil!" : "gagal!" },
+        ],
       });
 
       dispatch(topupBalance(values))
@@ -74,19 +69,15 @@ export const FormTopup = ({}: Props) => {
         onConfirm,
       },
       handleClose: () => setDialog(null),
-      content: (
-        <p className="text-center">
-          Anda yakin untuk Top Up sebesar
-          <br />
-          <span className="text-2xl font-semibold">{formatted} ?</span>
-        </p>
-      ),
+      content: [
+        { normal: "Anda yakin untuk Top Up sebesar" },
+        { big: `${formatted} ?` },
+      ],
     });
   };
 
   return (
     <>
-      <MyDialog data={dialog} />
       <div className="mt-12">
         <h3 className="">
           Silahkan masukkan
