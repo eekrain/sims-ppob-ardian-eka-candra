@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   TLoginSchema,
   TRegistrationSchema,
@@ -45,3 +45,5 @@ export const updateProfilePicture = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }),
 );
+
+export const logoutAction = createAction("/auth/logouut");

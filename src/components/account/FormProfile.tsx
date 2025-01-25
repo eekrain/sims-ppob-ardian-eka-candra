@@ -14,7 +14,11 @@ import {
 } from "@/components/ui/form";
 import { MdAlternateEmail } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { logout, updateProfile, updateProfilePicture } from "@/store/auth";
+import {
+  logoutAction,
+  updateProfile,
+  updateProfilePicture,
+} from "@/store/auth";
 import { useEffect } from "react";
 import { MyAvatar } from "@/components/common";
 import { toast } from "sonner";
@@ -59,7 +63,7 @@ export const FormProfile = ({ isEditing, setEditing }: Props) => {
     } else toast.error("Maksimal ukuran foto 100 KB");
   };
 
-  const onLogout = () => dispatch(logout());
+  const onLogout = () => dispatch(logoutAction());
 
   return (
     <div className="flex flex-col items-center">

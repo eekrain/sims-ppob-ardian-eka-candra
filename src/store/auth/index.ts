@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import {
   getProfile,
   login,
+  logoutAction,
   register,
   updateProfile,
   updateProfilePicture,
@@ -30,17 +31,16 @@ const initialState: AuthState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    logout: (state) => {
-      localStorage.removeItem("accessToken"); // delete token from storage
-      state.loading = false;
-      state.user = null;
-      state.accessToken = null;
-      state.error = null;
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(logoutAction, (state) => {
+        localStorage.removeItem("accessToken"); // delete token from storage
+        state.loading = false;
+        state.user = null;
+        state.accessToken = null;
+        state.error = null;
+      })
       .addCase(register.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -122,7 +122,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
 const authReducer = authSlice.reducer;
 export default authReducer;
 export * from "./actions";

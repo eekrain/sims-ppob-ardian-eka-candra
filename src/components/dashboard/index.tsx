@@ -2,7 +2,7 @@ import { Outlet, useNavigate } from "react-router";
 import { DashboardHeader } from "./Header";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { useEffect, useRef } from "react";
-import { getProfile, logout } from "@/store/auth";
+import { getProfile, logoutAction } from "@/store/auth";
 import { MyDialog } from "../common";
 
 export const DashboardLayout = () => {
@@ -23,7 +23,7 @@ export const DashboardLayout = () => {
 
   useEffect(() => {
     if (profileFetched && !user) {
-      dispatch(logout());
+      dispatch(logoutAction());
       navigate("/auth");
     }
   }, [dispatch, profileFetched, user]);

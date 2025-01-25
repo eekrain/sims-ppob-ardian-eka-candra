@@ -1,6 +1,7 @@
 import { TService, TBanner } from "@/lib/services/information";
 import { createSlice } from "@reduxjs/toolkit";
 import { getAllBanners, getAllServices } from "./actions";
+import { logoutAction } from "../auth";
 
 type InformationState = {
   services: TService[];
@@ -23,6 +24,7 @@ const informationSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(logoutAction, () => initialState)
       .addCase(getAllServices.pending, (state) => {
         state.loading = true;
         state.error = null;

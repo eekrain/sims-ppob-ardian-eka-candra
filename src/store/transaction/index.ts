@@ -6,6 +6,7 @@ import {
   getTransactionHistory,
   topupBalance,
 } from "./actions";
+import { logoutAction } from "../auth";
 
 type TransactionState = {
   balance: number;
@@ -49,6 +50,7 @@ const transactionSlice = createSlice({
   },
   extraReducers(builder) {
     builder
+      .addCase(logoutAction, () => initialState)
       .addCase(topupBalance.pending, (state) => {
         state.loading = true;
         state.error = null;
