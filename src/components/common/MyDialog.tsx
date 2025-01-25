@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { DialogOverlay } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/Logo.png";
+import logo from "@/assets/logo.png";
 import { IoClose, IoCheckmark } from "react-icons/io5";
 import { Button } from "../ui/button";
 
@@ -68,11 +68,16 @@ export const MyDialog = ({ data }: { data?: MyDialogProps }) => {
 
           <div className="mt-8 flex flex-col gap-4">
             {data.confirmation && (
-              <Button onClick={data.confirmation.onConfirm} variant="ghost">
+              <Button
+                type="button"
+                onClick={data.confirmation.onConfirm}
+                variant="ghost"
+              >
                 {data.confirmation.warning}
               </Button>
             )}
             <Button
+              type="button"
               onClick={data.handleClose}
               variant="ghost"
               className="text-muted-foreground"

@@ -176,6 +176,7 @@ export const FormProfile = ({ isEditing, setEditing }: Props) => {
 
             <Button
               onClick={onLogout}
+              type="button"
               variant="destructive"
               size="lg"
               className="w-full"

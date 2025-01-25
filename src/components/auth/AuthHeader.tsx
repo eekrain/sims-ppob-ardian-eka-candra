@@ -1,4 +1,4 @@
-import logo from "@/assets/Logo.png";
+import logo from "@/assets/logo.png";
 
 type Props = {
   description: JSX.Element;
@@ -8,7 +8,7 @@ export const AuthHeader = ({ description }: Props) => {
   return (
     <>
       <header className="flex items-center justify-center gap-2">
-        <img src={logo} alt="Logo" />
+        <img src={logo} alt="Logo" className="size-10" />
         <span className="text-lg font-medium">
           SIMS PPOB <span className="hidden md:inline">ARDIAN </span>
           <span>EKA</span>

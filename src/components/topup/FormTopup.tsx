@@ -129,6 +129,7 @@ export const FormTopup = ({}: Props) => {
               )}
             />
             <Button
+              type="submit"
               variant="destructive"
               className="hidden md:block"
               disabled={+currTopup < 10000}
@@ -155,6 +156,7 @@ export const FormTopup = ({}: Props) => {
           </div>
 
           <Button
+            type="submit"
             variant="destructive"
             className="mt-4 md:hidden"
             disabled={+currTopup < 10000}

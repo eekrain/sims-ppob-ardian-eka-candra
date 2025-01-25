@@ -1,4 +1,4 @@
-import bgSaldo from "@/assets/Background Saldo.png";
+import bgSaldo from "@/assets/bg_saldo.png";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { getBalance, toggleBalanceVisibility } from "@/store/transaction";
 import { useEffect } from "react";

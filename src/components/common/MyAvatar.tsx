@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useMemo, useState } from "react";
-import fallbackImage from "@/assets/Fallback User Picture.png";
+import fallbackImage from "@/assets/user_picture_fallback.png";
 
 type Props = {
   src: string;

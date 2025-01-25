@@ -1,4 +1,4 @@
-import ilustrasiLogin from "@/assets/Illustrasi Login.png";
+import ilustrasiLogin from "@/assets/login_illustration.png";
 import { useAppSelector } from "@/store";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";

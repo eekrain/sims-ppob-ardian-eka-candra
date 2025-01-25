@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
-import Logo from "@/assets/Logo.png";
+import logo from "@/assets/logo.png";
 import { IoMenu } from "react-icons/io5";
 import { MyNavLink } from "./NavLink";
 
@@ -16,7 +16,7 @@ export const DashboardHeader = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-white dark:border-gray-800 dark:bg-gray-950">
       <div className="container flex h-16 items-center justify-between">
         <NavLink to="/" className="flex items-center gap-2">
-          <img src={Logo} className="h-[20px]" alt="PPOB Logo" />
+          <img src={logo} className="size-10" alt="PPOB Logo" />
           <span className="font-semibold">
             SIMS PPOB <span className="hidden md:inline">ARDIAN </span>
             <span>EKA</span>
@@ -34,6 +34,7 @@ export const DashboardHeader = () => {
           <Sheet>
             <SheetTrigger asChild>
               <Button
+                type="button"
                 variant="ghost"
                 size="icon"
                 className="rounded-full md:hidden"

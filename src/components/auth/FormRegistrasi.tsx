@@ -123,7 +123,7 @@ export const FormRegistrasi = ({}: Props) => {
           )}
         />
 
-        <Button variant={"destructive"} className="mt-6">
+        <Button type="submit" variant={"destructive"} className="mt-6">
           Registrasi
         </Button>
 
