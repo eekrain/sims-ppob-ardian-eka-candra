@@ -30,7 +30,7 @@ class MyFetch {
   private _opts: any = {};
   private _errMesage = "Request error";
 
-  constructor(opts: any) {
+  constructor(opts: { url: string; opts: RequestInit }) {
     this._opts = opts.opts;
     this._url = opts.url;
   }
