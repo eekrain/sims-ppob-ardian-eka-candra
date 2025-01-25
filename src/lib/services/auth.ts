@@ -32,6 +32,7 @@ export type User = {
   first_name: string;
   last_name: string;
   profile_image: string;
+  full_name: string;
 };
 
 const getProfile = async () =>

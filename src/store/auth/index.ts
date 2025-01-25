@@ -78,6 +78,7 @@ const authSlice = createSlice({
       .addCase(getProfile.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.user = payload.data!;
+        state.user.full_name = `${payload.data?.first_name} ${payload.data?.last_name}`;
         state.success = true;
         state.profileFetched = true;
       })
@@ -93,6 +94,7 @@ const authSlice = createSlice({
       .addCase(updateProfile.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.user = payload.data!;
+        state.user.full_name = `${payload.data?.first_name} ${payload.data?.last_name}`;
         state.success = true;
         toast.success(payload.message);
       })
@@ -108,6 +110,7 @@ const authSlice = createSlice({
       .addCase(updateProfilePicture.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.user = payload.data!;
+        state.user.full_name = `${payload.data?.first_name} ${payload.data?.last_name}`;
         state.success = true;
         toast.success(payload.message);
       })

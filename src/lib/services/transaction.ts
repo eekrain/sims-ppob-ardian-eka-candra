@@ -13,7 +13,7 @@ export type TBalance = {
 
 const getBalance = async () =>
   myfetch
-    .url("/banner")
+    .url("/balance")
     .method("GET")
     .bearer(localStorage.getItem("accessToken")!)
     .errorMessage("Gagal fetching list banner")

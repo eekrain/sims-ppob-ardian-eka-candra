@@ -1,0 +1,17 @@
+meta {
+  name: Buy Transaction
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{BASE_URL}}/transaction
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "service_code": "PLN"
+  }
+}

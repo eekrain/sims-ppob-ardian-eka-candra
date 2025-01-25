@@ -1,4 +1,3 @@
-import dummyProfilePic from "@/assets/Profile Photo.png";
 import { userProfileSchema, TUserProfileSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -17,6 +16,8 @@ import { Button } from "../ui/button";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { logout, updateProfile, updateProfilePicture } from "@/store/auth";
 import { useEffect } from "react";
+import MyAvatar from "../MyAvatar";
+import { toast } from "sonner";
 
 type Props = {
   isEditing: boolean;
@@ -55,7 +56,7 @@ const FormProfile = ({ isEditing, setEditing }: Props) => {
       const data = new FormData();
       data.append("file", files[0]);
       dispatch(updateProfilePicture(data));
-    } else alert("Maksimal ukuran foto 100 KB");
+    } else toast.error("Maksimal ukuran foto 100 KB");
   };
 
   const onLogout = () => dispatch(logout());
@@ -63,14 +64,10 @@ const FormProfile = ({ isEditing, setEditing }: Props) => {
   return (
     <div className="flex flex-col items-center">
       <div className="relative">
-        <img
-          src={
-            user?.profile_image.includes("null")
-              ? dummyProfilePic
-              : user?.profile_image
-          }
-          className="size-32 rounded-full border-2"
-          alt="User profile picture"
+        <MyAvatar
+          src={user?.profile_image!}
+          userName={user?.full_name!}
+          className="size-28"
         />
 
         <div className="absolute bottom-0 right-0 flex size-8 items-center justify-center overflow-clip rounded-full border-2 bg-white">
