@@ -62,7 +62,7 @@ export class MyFetch {
 
     const res = await fetch(`${this._baseUrl}${this._url}`, opts);
     const json = await res.json().catch((err) => {
-      console.log(`fetch ${this._url} error:`, err);
+      console.error(`fetch ${this._url} error:`, err);
       return null;
     });
     if (!res.ok) {
