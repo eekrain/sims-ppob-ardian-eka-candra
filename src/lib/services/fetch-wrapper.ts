@@ -32,7 +32,7 @@ class MyFetch {
       if (!res.ok) throw new Error(json?.message || this._errMesage);
       else return json as T;
     } catch (err: any) {
-      throw new Error(err.message);
+      throw new Error(err?.message || this._errMesage);
     } finally {
       controller.abort();
     }
