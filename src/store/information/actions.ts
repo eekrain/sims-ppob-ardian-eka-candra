@@ -1,4 +1,4 @@
-import InformationService from "@/lib/services/information";
+import { InformationService } from "@/lib/services";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getAllServices = createAsyncThunk(

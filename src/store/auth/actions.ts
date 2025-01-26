@@ -4,7 +4,7 @@ import {
   TRegistrationSchema,
   TUserProfileSchema,
 } from "@/lib/schema";
-import AuthService from "@/lib/services/auth";
+import { AuthService } from "@/lib/services";
 
 export const register = createAsyncThunk(
   "auth/register",

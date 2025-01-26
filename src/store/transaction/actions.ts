@@ -3,7 +3,7 @@ import {
   TTopupSchema,
   TTransactionHistoryQuery,
 } from "@/lib/schema";
-import TransactionService from "@/lib/services/transaction";
+import { TransactionService } from "@/lib/services";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { resetTransactionHistory } from ".";
 

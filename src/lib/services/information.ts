@@ -5,7 +5,7 @@ export type TBanner = {
   banner_image: string;
   description: string;
 };
-const getAllBanner = async () =>
+export const getAllBanner = async () =>
   myfetch
     .GET("/banner")
     .errorMessage("Gagal fetching list banner")
@@ -17,11 +17,8 @@ export type TService = {
   service_icon: string;
   service_tariff: number;
 };
-const getAllServices = async () =>
+export const getAllServices = async () =>
   myfetch
     .GET("/services")
     .errorMessage("Gagal fetching list service")
     .execute<TFetchResult<TService[]>>();
-
-const InformationService = { getAllBanner, getAllServices };
-export default InformationService;
