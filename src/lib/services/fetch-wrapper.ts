@@ -5,34 +5,14 @@ export type TFetchResult<T> = {
 };
 const BASE_URL = import.meta.env.VITE_BASE_API_URL as string;
 
-const initBody = (body?: any) => {
-  const headers: any = { "Content-Type": "application/json" };
-  if (!body) return { headers };
-  if (body instanceof FormData) return { body };
-  return { body: JSON.stringify(body), headers };
-};
-
-export const myfetch = {
-  get: (url: string) =>
-    new MyFetch({ url, opts: { method: "GET", ...initBody() } }),
-  post: (url: string, body?: any) =>
-    new MyFetch({ url, opts: { method: "POST", ...initBody(body) } }),
-  put: (url: string, body?: any) =>
-    new MyFetch({ url, opts: { method: "PUT", ...initBody(body) } }),
-  patch: (url: string, body?: any) =>
-    new MyFetch({ url, opts: { method: "PATCH", ...initBody(body) } }),
-  delete: (url: string, body?: any) =>
-    new MyFetch({ url, opts: { method: "DELETE", ...initBody(body) } }),
-};
-
 class MyFetch {
   private _url = "";
   private _opts: any = {};
   private _errMesage = "Request error";
 
-  constructor(opts: { url: string; opts: RequestInit }) {
-    this._opts = opts.opts;
-    this._url = opts.url;
+  constructor(url: string, opts: RequestInit) {
+    this._url = url;
+    this._opts = opts;
   }
 
   errorMessage(errMesage: string) {
@@ -40,7 +20,7 @@ class MyFetch {
     return this;
   }
 
-  async execute<T>() {
+  async execute<T>(): Promise<T> {
     const controller = new AbortController();
     const token = localStorage.getItem("accessToken");
     if (token) this._opts.headers["Authorization"] = `Bearer ${token}`;
@@ -58,3 +38,20 @@ class MyFetch {
     }
   }
 }
+
+const initRequest = (body?: any) => {
+  const headers: any = { "Content-Type": "application/json" };
+  if (!body) return { headers };
+  if (body instanceof FormData) return { body, headers: {} };
+  return { body: JSON.stringify(body), headers };
+};
+
+const createMethod = (method: string) => (url: string, body?: any) =>
+  new MyFetch(url, { method, ...initRequest(body) });
+export const myfetch = {
+  get: createMethod("GET"),
+  post: createMethod("POST"),
+  put: createMethod("PUT"),
+  patch: createMethod("PATCH"),
+  delete: createMethod("DELETE"),
+};
