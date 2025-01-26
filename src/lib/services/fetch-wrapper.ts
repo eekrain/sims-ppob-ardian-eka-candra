@@ -3,27 +3,27 @@ export type TFetchResult<T> = {
   message: string;
   data: T | null;
 };
-const BASE_URL = import.meta.env.VITE_BASE_API_URL;
+const BASE_URL = import.meta.env.VITE_BASE_API_URL as string;
 
-const initBody = (body?: any) =>
-  body instanceof FormData
-    ? { body: body }
-    : {
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      };
-const GET = (url: string) =>
-  new MyFetch({ url, opts: { method: "GET", ...initBody() } });
-const POST = (url: string, body: any) =>
-  new MyFetch({ url, opts: { method: "POST", ...initBody(body) } });
-const PUT = (url: string, body: any) =>
-  new MyFetch({ url, opts: { method: "PUT", ...initBody(body) } });
-const PATCH = (url: string, body: any) =>
-  new MyFetch({ url, opts: { method: "PATCH", ...initBody(body) } });
-const DELETE = (url: string) =>
-  new MyFetch({ url, opts: { method: "DELETE", ...initBody() } });
+const initBody = (body?: any) => {
+  const headers: any = { "Content-Type": "application/json" };
+  if (!body) return { headers };
+  if (body instanceof FormData) return { body };
+  return { body: JSON.stringify(body), headers };
+};
 
-export const myfetch = { GET, POST, PUT, PATCH, DELETE };
+export const myfetch = {
+  get: (url: string) =>
+    new MyFetch({ url, opts: { method: "GET", ...initBody() } }),
+  post: (url: string, body?: any) =>
+    new MyFetch({ url, opts: { method: "POST", ...initBody(body) } }),
+  put: (url: string, body?: any) =>
+    new MyFetch({ url, opts: { method: "PUT", ...initBody(body) } }),
+  patch: (url: string, body?: any) =>
+    new MyFetch({ url, opts: { method: "PATCH", ...initBody(body) } }),
+  delete: (url: string, body?: any) =>
+    new MyFetch({ url, opts: { method: "DELETE", ...initBody(body) } }),
+};
 
 class MyFetch {
   private _url = "";

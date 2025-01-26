@@ -7,7 +7,7 @@ export type TBanner = {
 };
 export const getAllBanner = async () =>
   myfetch
-    .GET("/banner")
+    .get("/banner")
     .errorMessage("Gagal fetching list banner")
     .execute<TFetchResult<TBanner[]>>();
 
@@ -19,6 +19,6 @@ export type TService = {
 };
 export const getAllServices = async () =>
   myfetch
-    .GET("/services")
+    .get("/services")
     .errorMessage("Gagal fetching list service")
     .execute<TFetchResult<TService[]>>();

@@ -11,13 +11,13 @@ export type TBalance = {
 
 export const getBalance = async () =>
   myfetch
-    .GET("/balance")
+    .get("/balance")
     .errorMessage("Gagal fetching saldo")
     .execute<TFetchResult<TBalance>>();
 
 export const topupBalance = async (values: TTopupSchema) =>
   myfetch
-    .POST("/topup", values)
+    .post("/topup", values)
     .errorMessage("Gagal fetching list banner")
     .execute<TFetchResult<TBalance>>();
 
@@ -32,7 +32,7 @@ export type TCreatePayment = {
 
 export const createPayment = async (values: TPaymentSchema) =>
   myfetch
-    .POST("/transaction", values)
+    .post("/transaction", values)
     .errorMessage("Gagal melakukan payment")
     .execute<TFetchResult<TCreatePayment>>();
 
@@ -49,7 +49,7 @@ export const getTransactionHistory = async ({
   limit,
 }: TTransactionHistoryQuery) =>
   myfetch
-    .GET(`/transaction/history?offset=${offset}&limit=${limit}`)
+    .get(`/transaction/history?offset=${offset}&limit=${limit}`)
     .errorMessage("Gagal fetching histori transaksi")
     .execute<
       TFetchResult<{
