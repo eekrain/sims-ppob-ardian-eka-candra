@@ -5,7 +5,7 @@ export type TFetchResult<T> = {
 };
 const BASE_URL = import.meta.env.VITE_BASE_API_URL;
 
-const initHeaders = (body?: any) =>
+const initBody = (body?: any) =>
   body instanceof FormData
     ? { body: body }
     : {
@@ -13,15 +13,15 @@ const initHeaders = (body?: any) =>
         body: JSON.stringify(body),
       };
 const GET = (url: string) =>
-  new MyFetch({ url, opts: { method: "GET", ...initHeaders() } });
+  new MyFetch({ url, opts: { method: "GET", ...initBody() } });
 const POST = (url: string, body: any) =>
-  new MyFetch({ url, opts: { method: "POST", ...initHeaders(body) } });
+  new MyFetch({ url, opts: { method: "POST", ...initBody(body) } });
 const PUT = (url: string, body: any) =>
-  new MyFetch({ url, opts: { method: "PUT", ...initHeaders(body) } });
+  new MyFetch({ url, opts: { method: "PUT", ...initBody(body) } });
 const PATCH = (url: string, body: any) =>
-  new MyFetch({ url, opts: { method: "PATCH", ...initHeaders(body) } });
+  new MyFetch({ url, opts: { method: "PATCH", ...initBody(body) } });
 const DELETE = (url: string) =>
-  new MyFetch({ url, opts: { method: "DELETE", ...initHeaders() } });
+  new MyFetch({ url, opts: { method: "DELETE", ...initBody() } });
 
 export const myfetch = { GET, POST, PUT, PATCH, DELETE };
 
