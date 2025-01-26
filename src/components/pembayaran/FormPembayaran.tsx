@@ -48,8 +48,8 @@ export const FormPembayaran = ({ service }: Props) => {
       });
 
       dispatch(createPayment(values)).then((res) => {
-        if (res.type.includes("reject")) setDialog(notif(false));
-        else setDialog(notif(true));
+        if (res.meta.requestStatus === "fulfilled") setDialog(notif(true));
+        else setDialog(notif(false));
       });
     };
 

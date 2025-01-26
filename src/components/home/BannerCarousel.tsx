@@ -40,6 +40,7 @@ export const BannerCarousel = ({}: Props) => {
         naturalSlideHeight={110}
         interval={3000}
         isPlaying={true}
+        hasMasterSpinner
       >
         <Slider>
           {banners.map((item, i) => (
@@ -47,7 +48,7 @@ export const BannerCarousel = ({}: Props) => {
               <Image
                 src={item.banner_image}
                 className="object-contain"
-                hasMasterSpinner={false}
+                hasMasterSpinner
               />
             </Slide>
           ))}
